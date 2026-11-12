@@ -71,6 +71,12 @@ kumbare.com/
 - Panelde aynı sayfada tekrar tekrar gönderilen formlara `data-no-guard` eklenir (panel.js çift gönderim engeli formu kilitler).
 - Web sitesi tasarımı: "adisyon + kumbara" konsepti; renkler mürekkep `#0e3b3a`, kumbara sarısı `#f2b705`, kâğıt `#f6f7f4`; yazı tipleri Bricolage Grotesque + Source Sans 3; restoran fotoğrafı yerine mutfağa göre renkli "tabela"; mutfak fotoğrafları "temsilî" olarak etiketlenir. Google Görseller kullanılmaz (lisans).
 
+## Git / GitHub
+
+- Depo: **https://github.com/shortubeco/kumbare** (özel/private), dal `main`. Proje kökü (`C:\claude-lessons\kumbare.com`) depodur; ilk yükleme 12 Kasım 2026.
+- Depoya girmeyenler (`.gitignore`): `deploy/*.zip` (kumbare-backend.zip içinde `.env` var!), `backend/public/uploads/`, `backend/.env`, `backend/vendor`, `storage` içerikleri. Göndermeden önce `git diff --cached` ile şifre/anahtar taraması yapılır.
+- Kullanıcı istediğinde commit + push yapılır (kendiliğinden değil). Commit mesajları Türkçe.
+
 ## Yerel geliştirme ortamı (Windows)
 
 - PHP 8.2.35 + Composer: `C:\php82` (kullanıcı PATH'inde). XAMPP'teki PHP 8.0'a dokunulmaz.
