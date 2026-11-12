@@ -1,0 +1,978 @@
+# RESTORAN KUMBARA VE DİJİTAL SADAKAT PLATFORMU
+## Ürün Gereksinimleri ve İş Modeli
+
+## 1. PROJENİN AMACI
+
+Restoranların müşterilerine alışveriş yaptıkça ödül kazandırabildiği, müşterilerin ise farklı restoranlarda biriktirdikleri ödülleri tek bir mobil uygulama üzerinden takip edebildiği dijital sadakat platformu geliştirilecektir.
+
+Platform üç ana bölümden oluşacaktır:
+
+1. **Herkese açık web sitesi:** Restoranların, menülerinin, fiyatlarının ve sundukları ödül oranlarının tanıtıldığı platform.
+2. **Müşteri mobil uygulaması:** Müşterilerin restoranları keşfettiği, menüleri incelediği, Müşteri numarasıyla ödül kazandığı ve restoran bazında biriktirdiği bakiyeleri takip ettiği uygulama.
+3. **Restoran ve yönetici panelleri:** Restoranların işletmelerini, menülerini, müşterilerini ve sadakat işlemlerini yönettiği; platform yöneticisinin ise bütün sistemi kontrol ettiği yönetim alanları.
+
+Temel amaç, restoranların müşteri sadakatini artırmak, müşterilerin farklı restoranlardaki ödüllerini tek bir yerde biriktirmesini sağlamak ve restoranlara yeni müşteriler kazandırabilecek bir keşif platformu oluşturmaktır.
+
+## 2. TEMEL İŞ MODELİ
+
+Platformda her restoranın kendisine ait bağımsız bir sadakat sistemi bulunacaktır.
+
+Örneğin:
+
+- Restoran A, müşterilerine %10 ödül oranı sunar.
+- Restoran B, müşterilerine %5 ödül oranı sunar.
+- Restoran C, müşterilerine %15 ödül oranı sunar.
+
+Bir müşteri Restoran A'da 1.000 TL tutarında uygun bir harcama yaptığında %10 oran üzerinden 100 TL ödül kazanır.
+
+Bu 100 TL yalnızca Restoran A'da kullanılabilir. Başka bir restoranda kullanılamaz.
+
+Aynı müşteri Restoran B'de de alışveriş yaparsa Restoran B için ayrı bir kumbara bakiyesi oluşur.
+
+Dolayısıyla müşterinin mobil uygulamasında her restoranın bakiyesi ayrı ayrı görüntülenir.
+
+**Önemli iş kuralları:**
+
+- Her restoranın ödül sistemi bağımsızdır.
+- Restoranlar kendi ödül oranlarını belirleyebilir.
+- Müşteri kazandığı ödülü yalnızca ödülü kazandığı restoranda kullanabilir.
+- Restoranlar başka restoranların müşteri bakiyelerine erişemez.
+- Müşterinin bütün restoranlardaki bakiyeleri tek mobil uygulamada görüntülenebilir.
+- Ödül bakiyesi nakit para değildir; müşteriye ilgili restoranda sunulan sadakat avantajıdır.
+- Müşteri bakiyesini başka bir müşteriye devredemez veya nakit olarak çekemez.
+
+## 3. MVP KAPSAMI VE SINIRLARI
+
+İlk sürümün temel amacı restoran keşfi, menü inceleme ve fiziksel restoranda sadakat işlemleridir.
+
+İlk sürümde bulunacak özellikler:
+
+- Restoran listeleme ve keşfetme.
+- Restoran profilleri.
+- Restoran menüleri ve fiyatları.
+- Restoranların ödül oranlarının karşılaştırılması.
+- Müşteri üyeliği ve mobil uygulama.
+- Restoran bazında ayrı kumbara bakiyeleri.
+- İşlem geçmişi.
+- Restoran yönetim paneli.
+- Platform yönetim paneli.
+- Restoran kampanyaları ve bildirimleri.
+- Abonelik ve paket yönetimi.
+
+**İlk sürümde bulunmayacak özellikler:**
+
+- Online yemek siparişi.
+- Online ödeme alma.
+- Kredi kartı veya banka kartı işlemleri.
+- Kurye ve teslimat yönetimi.
+- Restoranlar arasında sipariş yönlendirme.
+- Platform üzerinden yemek satın alma veya ödeme yapma.
+
+Müşteri restorana gider, siparişini verir ve ödemesini restoranın mevcut ödeme yöntemleriyle doğrudan restorana yapar. Kumbara sistemi yalnızca sadakat ödüllerinin kazanılması ve kullanılması için çalışır.
+
+İlerleyen sürümlerde online sipariş ve ödeme özellikleri eklenebilecek şekilde ürün genişletilebilir; ancak bunlar ilk sürümün kapsamına dahil değildir.
+
+## 4. KULLANICI ROLLERİ
+
+Platformda dört temel kullanıcı rolü bulunacaktır.
+
+### 4.1. Ziyaretçi
+
+Üyelik oluşturmadan herkese açık web sitesini kullanabilir.
+
+Yapabilecekleri:
+
+- Restoranları listelemek.
+- Restoranları şehir/ilçe, en yüksek puan alan , en çok puanlanan, ödül oranları ya da kategoriye göre filtrelemek.
+- Restoranların ödül oranlarını karşılaştırmak.
+- Restoran menülerini ve fiyatlarını incelemek.
+- Restoran detay sayfalarını görüntülemek.
+- Restoranların konum ve iletişim bilgilerini görmek.
+- Üye olmaya yönlendirilmek.
+
+### 4.2. Müşteri
+
+Mobil uygulama üzerinden üye olur ve platformu kullanır.
+
+Yapabilecekleri:
+
+- Üye olmak ve giriş yapmak.
+- Profil bilgilerini yönetmek.
+- Restoranları keşfetmek.
+- Restoranları konum, kategori ve ödül oranına göre filtrelemek.
+- Restoran menülerini ve fiyatlarını incelemek.
+- Restoranları favorilerine eklemek.
+- Her restorana ait kumbara bakiyesini görüntülemek.
+- Kazanılan ve kullanılan ödüllerin geçmişini incelemek.
+- Kendi müşteri numarasını görüntülemek.
+- Ödül kazandığında veya kullandığında bildirim almak.
+- Restoran kampanyalarını takip etmek.
+
+### 4.3. Restoran Yöneticisi
+
+Restoran adına hesap açar ve işletmesini yönetir.
+
+Yapabilecekleri:
+
+- Restoran profilini oluşturmak ve düzenlemek.
+- Restoranın birden fazla şubesini yönetmek.
+- Restoran menüsünü oluşturmak.
+- Menü kategorileri oluşturmak.
+- Ürün eklemek, düzenlemek ve silmek.
+- Ürün fiyatlarını güncellemek.
+- Ürün açıklaması ve görseli eklemek.
+- Ödül oranını belirlemek.
+- Müşterilerin numarası üzerinden ödül eklemek.
+- Müşterilere ödül tanımlamak.
+- Müşterilerin ödül bakiyelerinden kullanım gerçekleştirmek.
+- Müşteri bilgilerini ve işlem geçmişlerini görüntülemek.
+- Kampanyalar oluşturmak.
+- Çalışanlarını sisteme eklemek.
+- Çalışanlarına yetki vermek.
+- Şube bazında ve genel işletme bazında raporları görüntülemek.
+- Abonelik paketini görüntülemek ve değiştirmek.
+
+### 4.4. Platform Yöneticisi
+
+Platformun tamamını yönetir.
+
+Yapabilecekleri:
+
+- Restoranları görüntülemek.
+- Restoran başvurularını incelemek ve onaylamak.
+- Restoran hesaplarını askıya almak veya kapatmak.
+- Müşterileri görüntülemek ve yönetmek.
+- Restoran kategorilerini yönetmek.
+- Abonelik paketlerini yönetmek.
+- Restoranların abonelik durumlarını takip etmek.
+- Sponsorlu restoranları yönetmek.
+- Kampanya ve duyuruları yönetmek.
+- Platform kullanım istatistiklerini görüntülemek.
+- Genel raporları incelemek.
+- İşlem kayıtlarını ve yönetim faaliyetlerini denetlemek.
+
+## 5. HERKESE AÇIK WEB SİTESİ
+
+Web sitesi platformun tanıtım ve restoran keşif alanıdır.
+
+### 5.1. Ana Sayfa
+
+Ana sayfada aşağıdaki alanlar bulunmalıdır:
+
+- Platformun ne işe yaradığını anlatan tanıtım alanı.
+- Öne çıkan restoranlar.
+- Yakındaki restoranlar.
+- En yüksek ödül oranı sunan restoranlar.
+- Yeni eklenen restoranlar.
+- Popüler restoran kategorileri.
+- Kampanyalı restoranlar.
+- Restoran arama alanı.
+- Mobil uygulamaya yönlendirme alanı.
+- Restoran işletmelerine yönelik kayıt ve tanıtım alanı.
+
+### 5.2. Restoran Listeleme
+
+Restoranlar kartlar halinde listelenmelidir.
+
+Her restoran kartında:
+
+- Restoran adı.
+- Restoran görseli veya logosu.
+- Kategori.
+- Konum.
+- Restoran puanı
+- Ödül yüzdesi.
+- Ödül sisteminin kısa açıklaması.
+- Restoran detay sayfasına yönlendirme. Detay sayfasında iletişim, ulaşım, foto galeri, menüler ve fiyatlar olmalı.
+
+bulunmalıdır.
+
+Restoranlar aşağıdaki kriterlere göre filtrelenebilmelidir:
+
+- Restoran kategorisi.
+- Konum.
+- Ödül yüzdesi.
+- Kampanyalar.
+- Yeni eklenen restoranlar.
+- Popüler restoranlar.
+- Müşteri puanları
+
+Sıralama seçenekleri:
+
+- En yüksek ödül oranı.
+- En düşük ödül oranı.
+- En popüler restoranlar.
+- En yeni restoranlar.
+- En yüksek puan alanlar (10 dan az sayıda müşteriden puan alanlar sıralamaya girmemeli. en az 10 müşteri tarafından puan verilmiş olmalı) 
+- En çok puanlananlar. Yani en çok sayıda müşteri tarafından puan almış olanlar.
+
+Sponsorlu restoranlar listelerde daha görünür konumlandırılabilir; ancak sponsorlu oldukları açıkça belirtilmelidir.
+
+### 5.3. Restoran Detay Sayfası
+
+Her restoranın kendisine ait herkese açık bir detay sayfası bulunmalıdır.
+
+Bu sayfada:
+
+- Restoran puanı, adı ve logosu.
+- Restoran görselleri.
+- Açıklama.
+- Kategori.
+- Adres ve konum.
+- İletişim bilgileri.
+- Çalışma saatleri.
+- Ödül kazanma yüzdesi.
+- Ödül kullanma koşulları.
+- Menü kategorileri.
+- Ürünler ve fiyatları.
+- Kampanyalar.
+- Şube bilgileri.
+
+gösterilmelidir.
+
+Menü ve fiyatlar restoranın yönetim panelinden güncellendiğinde web sitesine de yansımalıdır.
+
+## 6. MÜŞTERİ MOBİL UYGULAMASI
+
+Mobil uygulama React Native ile geliştirilecektir.
+
+### 6.1. Üyelik ve Giriş
+
+Müşteriler:
+
+- E-posta veya telefon numarasıyla kayıt olabilir.
+- Güvenli şekilde giriş yapabilir.
+- Şifrelerini sıfırlayabilir.
+- Profil bilgilerini düzenleyebilir.
+- Bildirim tercihlerini yönetebilir.
+
+### 6.2. Ana Ekran
+
+Ana ekranda:
+
+- Yakındaki restoranlar.
+- Öne çıkan restoranlar.
+- En yüksek ödül oranları.
+- Kampanyalar.
+- Favori restoranlar.
+- Yeni eklenen restoranlar.
+- Restoran arama alanı.
+
+bulunmalıdır.
+
+### 6.3. Restoran Keşfi
+
+Müşteriler restoranları konumlarına, kategorilerine ve ödül oranlarına göre keşfedebilmelidir.
+
+Bir restoran seçildiğinde restoranın menüsü, fiyatları, ödül yüzdesi, adresi ve kampanyaları görüntülenebilmelidir.
+
+### 6.4. Kumbara Ekranı
+
+Mobil uygulamanın en önemli bölümlerinden biri kumbara ekranıdır.
+
+Müşteri, işlem yaptığı her restoran için ayrı bir kumbara görmelidir.
+
+Örnek:
+
+| Restoran | Biriken ödül |
+|---|---:|
+| Restoran A | 250 TL |
+| Restoran B | 120 TL |
+| Restoran C | 85 TL |
+| Restoran D | 340 TL |
+
+Restoran seçildiğinde:
+
+- Mevcut bakiye.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- İşlem geçmişi.
+- Ödül kullanım koşulları.
+- Restoranın detay sayfasına yönlndiren link. Tıklandığında restoranın detay sayfası gelmeli. web sitesindeki gibi bir detay sayfası olmalı.
+
+gösterilmelidir.
+
+Müşteri başka bir restoranın bakiyesini seçili restoranda kullanamamalıdır.
+
+### 6.5. MÜŞTERİ NUMARASI SİSTEMİ
+
+1.1. Müşteri Numara Sistemi
+
+Platforma üye olan her müşteriye otomatik olarak benzersiz bir müşteri numarası atanmalıdır.
+
+Müşteri numarası aşağıdaki kurallara uygun olmalıdır:
+
+Her müşteri için tek ve benzersiz bir numara oluşturulmalıdır.
+
+Müşteri numarası yalnızca rakamlardan oluşmalıdır.
+
+İlk müşteri numarası 1 olmalıdır.
+
+Sonraki müşterilere sırasıyla 2, 3, 4, 5 şeklinde numara verilmelidir.
+
+Numara üretiminde üst sınır bulunmamalıdır.
+
+Yeni üye oldukça numara otomatik olarak artırılmalıdır.
+
+Silinen veya pasif duruma getirilen müşterilerin numaraları başka müşterilere verilmemelidir.
+
+Müşteri numarası müşterinin hesabına kalıcı olarak bağlı olmalıdır.
+
+Müşteri numarası değiştirilememelidir.
+
+Örnek:
+
+Müşteri 1: 1
+
+Müşteri 2: 2
+
+Müşteri 3: 3
+
+Müşteri 4: 4
+
+Müşteri 5: 5
+
+Müşteri mobil uygulamasında kendi numarasını kolayca görebilmelidir.
+
+Müşteri restorana gittiğinde personel tarafından istenen müşteri numarasını söyleyerek hesabının bulunmasını sağlamalıdır.
+
+Müşteri numarası platform genelinde benzersiz olmalıdır. Yani aynı numara iki farklı müşteriye verilemez.
+
+Müşteri numarası tek başına müşteri hesabına erişim veya işlem yetkisi sağlamamalıdır. Personel yalnızca yetkili olduğu restoran kapsamında müşteri bilgilerini görüntüleyebilmelidir.
+
+1.2. Müşteriye Ödül Kazandırma
+
+İşlem sırası:
+
+Müşteri restoranda alışveriş yapar.
+
+Müşteri kendi numarasını restoran personeline söyler.
+
+Personel restoran yönetim panelinden müşteri numarasını girer.
+
+Sistem müşteriyi bulur.
+
+Müşterinin ilgili restorandaki mevcut kumbarası görüntülenir.
+
+Personel uygun harcama tutarını girer.
+
+Sistem restoranın belirlediği ödül oranına göre kazanılacak miktarı hesaplar.
+
+İşlem bilgileri gösterilir.
+
+Personel işlemi onaylar.
+
+Müşterinin ilgili restorandaki kumbarasına ödül eklenir.
+
+Müşteriye mobil uygulama üzerinden bildirim gönderilir.
+
+Örnek:
+
+Müşteri numarası: 125
+
+Harcama tutarı: 1.000 TL
+
+Restoranın ödül oranı: %10
+
+Kazanılan ödül: 100 TL
+
+1.3. Müşteriye Ödül Kullandırma
+
+İşlem sırası:
+
+Müşteri restoranda biriktirdiği ödülü kullanmak ister.
+
+Müşteri numarasını personele söyler.
+
+Personel numarayı yönetim paneline girer.
+
+Sistem müşterinin ilgili restorandaki bakiyesini gösterir.
+
+Personel kullanılacak ödül miktarını girer.
+
+Sistem yeterli bakiye olup olmadığını kontrol eder.
+
+İşlem müşteriye ve personele gösterilir.
+
+Müşterinin onayı alınır.
+
+İşlem tamamlanır ve bakiye güncellenir.
+
+Müşteriye bildirim gönderilir.
+
+Müşteri yalnızca ilgili restoranda kazandığı ödülü kullanabilmelidir.
+
+
+## 7. RESTORAN YÖNETİM PANELİ
+
+Restoran yöneticileri web üzerinden giriş yaparak işletmelerini yönetebilmelidir.
+
+### 7.1. Genel Bakış
+
+Panelin ana ekranında:
+
+- Toplam müşteri sayısı.
+- İçinde bulunulan ayın tekil müşteri sayısı.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- Kullanılabilir toplam ödül bakiyesi.
+- Günlük, haftalık ve aylık işlem sayıları.
+- En aktif müşteriler.
+- Şube performansları.
+- Abonelik bilgisi.
+- Aylık müşteri limiti ve kullanım durumu.
+
+gösterilmelidir.
+
+### 7.2. Restoran ve Şube Yönetimi
+
+Restoran yöneticisi:
+
+- Restoran bilgilerini düzenleyebilmeli.
+- Birden fazla şube ekleyebilmeli.
+- Şube adreslerini ve iletişim bilgilerini yönetebilmeli.
+- Şube çalışma saatlerini belirleyebilmeli.
+- Şubeleri aktif veya pasif duruma getirebilmelidir.
+
+Birden fazla şubesi olan restoranlarda sadakat sistemi restoran genelinde ortak çalışmalıdır.
+
+Yani bir müşteri restoranın bir şubesinde kazandığı ödülü aynı restoranın başka bir şubesinde de kullanabilmelidir.
+
+### 7.3. Menü Yönetimi
+
+Restoran yöneticisi menüsünü kendisi oluşturabilmelidir.
+
+- Menü kategorileri ekleyebilmelidir.
+- Ürün ekleyip düzenleyebilmelidir.
+- Ürünleri silebilmelidir.
+- Ürün görseli yükleyebilmelidir.
+- Ürün açıklaması girebilmelidir.
+- Ürün fiyatlarını belirleyebilmelidir.
+- Ürünleri geçici olarak satışa kapatabilmelidir.
+
+Menü değişiklikleri herkese açık web sitesine ve mobil uygulamaya yansımalıdır.
+
+### 7.4. Ödül Oranı Yönetimi
+
+Restoran yöneticisi müşterilerine sunacağı ödül oranını belirleyebilmelidir.
+
+Örneğin:
+
+- %5 ödül.
+- %10 ödül.
+- %15 ödül.
+
+Ödül oranı restoranın sadakat politikasına göre yönetilmelidir.
+
+Müşteriler restoranları incelerken bu oranı açıkça görebilmelidir.
+
+### 7.5. Müşteri Yönetimi
+
+Restoran yöneticisi:
+
+- Kendi restoranında işlem yapan müşterileri görüntüleyebilmelidir.
+- Müşteri bazında toplam kazanılan ödülü görebilmelidir.
+- Müşterinin mevcut bakiyesini görebilmelidir.
+- İşlem geçmişini inceleyebilmelidir.
+- Müşterinin hangi şubede işlem yaptığını görebilmelidir.
+
+Restoran yalnızca kendi müşterilerinin sadakat bilgilerine erişebilmelidir.
+
+
+### 7.8. Kampanya Yönetimi
+
+Restoran yöneticisi kampanyalar oluşturabilmelidir.
+
+Örnekler:
+
+- Belirli tarihlerde ekstra ödül.
+- Belirli ürünlerde daha yüksek ödül oranı.
+- Hafta içi özel ödül oranı.
+- Yeni müşterilere özel kampanya.
+- Belirli şubelerde geçerli kampanya.
+
+Kampanyaların başlangıç ve bitiş tarihleri, geçerli olduğu şubeler ve kullanım koşulları tanımlanabilmelidir.
+
+### 7.9. Çalışan Yönetimi
+
+Restoran yöneticisi çalışanlarını sisteme ekleyebilmelidir.
+
+Çalışanlara aşağıdaki gibi yetkiler verilebilmelidir:
+
+- Müşteri numarası girip işlem yapma.
+- Ödül kazandırma.
+- Ödül kullandırma.
+- Müşteri görüntüleme.
+- Rapor görüntüleme.
+- Şube yönetimi.
+
+Her çalışan yalnızca kendisine tanımlanan yetkiler kapsamında işlem yapabilmelidir.
+
+## 8. ABONELİK PAKETLERİ VE AYLIK MÜŞTERİ SAYACI
+
+Platformda yalnızca iki abonelik paketi bulunacaktır.
+
+**Paketler arasındaki tek fark aylık tekil müşteri sayısıdır.**
+
+### 8.1. Ücretsiz Paket
+
+- Aylık 100 farklı müşteri sınırı vardır (Bu sınırı sistem yöneticisi ayarlardan değiştirebilmeli. Sınır her restorana aynen uygulanmalı).
+- Restoranın bütün yönetim özellikleri kullanılabilir.
+- Menü yönetimi kullanılabilir.
+- Şube yönetimi kullanılabilir.
+- Ödül oranı belirlenebilir.
+- müşeri numarası ile ödül kazandırma ve kullandırma kullanılabilir.
+- Kampanya yönetimi kullanılabilir.
+- Çalışan yönetimi kullanılabilir.
+- Raporlama özellikleri kullanılabilir.
+- Müşteri yönetimi kullanılabilir.
+
+Ücretsiz pakette herhangi bir özellik kısıtlaması bulunmayacaktır. Tek sınır aylık tekil müşteri sayısıdır.
+
+### 8.2. Profesyonel Paket
+
+- Aylık müşteri sınırı yoktur.
+- Ücretsiz paketteki bütün özellikler aynen kullanılabilir.
+- Müşteri sayısı bakımından sınırlama bulunmaz.
+
+Profesyonel paket, ücretsiz paketin özelliklerini açmak için değil, aylık müşteri sınırını kaldırmak için satın alınır.
+
+### 8.3. Aylık Müşteri Sayacı Nasıl Çalışacak?
+
+Her restoran için ayrı bir aylık müşteri sayacı bulunmalıdır.
+
+Sayaç her ayın 1'inde saat 00.00'da sıfırlanmalıdır.
+
+Sayaç sipariş adedini değil, ilgili ay içerisinde işlem yapan farklı müşteri sayısını ölçmelidir.
+
+Kurallar:
+
+- Bir müşteri aynı ay içerisinde 1 kez işlem yaparsa sayaç 1 artar.
+- Aynı müşteri aynı ay içerisinde 10 kez işlem yaparsa sayaç yine yalnızca 1 artar.
+- Aynı müşteri aynı ay içerisinde 100 kez işlem yaparsa sayaç yine yalnızca 1 artar.
+- Farklı bir müşteri ilk kez işlem yaptığında sayaç 1 artar.
+- Müşterinin eski veya yeni olması önemli değildir.
+- O ay içerisinde işlem yapan her farklı müşteri sayılmalıdır.
+- Aynı restoranın farklı şubelerinde işlem yapan aynı müşteri, restoran genelinde yalnızca 1 kez sayılmalıdır.
+- Bir sonraki ay aynı müşteri yeniden işlem yaparsa yeni ayın sayacına 1 müşteri olarak dahil edilmelidir.
+
+**Önemli:** Sayım ilgili ay içerisindeki ilk başarılı sadakat işlemiyle yapılmalıdır. Böylece yalnızca gerçekten işlem gerçekleştiren müşteriler sayılır.
+
+### 8.4. 100 Müşteriye Ulaşıldığında
+
+Ücretsiz pakette aylık sayaç 100 farklı müşteriye ulaştığında restoran Profesyonel pakete yönlendirilmelidir.
+
+Örnek:
+
+- Ayın ilk müşterisi: Sayaç 1.
+- 50. farklı müşteri: Sayaç 50.
+- 80. farklı müşteri: Uyarı gösterilir.
+- 90. farklı müşteri: Limitin yaklaştığı bildirilir.
+- 100. farklı müşteri: Limit dolmuştur ve Profesyonel pakete geçiş ekranı gösterilir.
+
+Restoran yöneticisine limitin dolduğu açıkça bildirilmelidir.
+
+Abonelik yükseltme ekranında Profesyonel paketin avantajı, sınırsız aylık müşteri kabul edebilmek olarak anlatılmalıdır.
+
+Bu sınır yeni müşterilerle sınırlı değildir. Eski veya yeni bütün müşteriler o ayın sayacına dahildir.
+
+Örneğin restoranın geçen yıl 5.000 müşterisi olmuş olabilir. Ancak yeni ayda sayaç sıfırdan başlar ve o ay işlem yapan müşteriler sayılır.
+
+### 8.5. Sayaç Dolduğunda Uygulanacak İş Kuralı
+
+Ücretsiz pakette aylık müşteri sayısı 100'e ulaştığında restoranın Profesyonel pakete geçmesi istenir.
+
+Limit dolduğunda restoranın yeni bir müşteriyle sadakat işlemi gerçekleştirmesine izin verilmemelidir. Restoran yöneticisine Profesyonel pakete geçiş seçeneği sunulmalıdır.
+
+Ancak bu durum müşterinin restorandan hizmet almasını engellemez. Müşteri normal şekilde restorandan alışveriş yapabilir ve ödemesini restorana yapabilir. Kısıtlama yalnızca platformdaki yeni sadakat işlemiyle ilgilidir.
+
+Restoran Profesyonel pakete geçtiğinde müşteri sayacı sınırı kalkar ve sadakat işlemlerine devam edebilir.
+
+### 8.6. Profesyonel Paketten Ücretsiz Pakete Geçiş
+
+Restoran istediği zaman Profesyonel paketten Ücretsiz pakete geçebilmelidir.
+
+Bu durumda geçmiş aylarda kazanılmış müşteri sayısı dikkate alınmaz.
+
+Yeni ayın sayacı sıfırdan başlar ve ücretsiz paket sınırı olan 100 müşteri uygulanır.
+
+Örnek:
+
+Bir restoran Profesyonel paketteyken toplam 10.000 farklı müşteriye hizmet vermiş olsun.
+
+Ücretsiz pakete geçtiğinde:
+
+- 10.000 müşterilik geçmiş kayıt korunur. 
+- Müşterilerin bakiyeleri korunur.
+- Geçmiş işlemler korunur.
+- Yeni ayın sayacı sıfırdan başlar.
+- O ay işlem yapan ilk 100 farklı müşteri sayılır.
+- 100 müşteriye ulaşıldığında tekrar Profesyonel pakete geçiş istenir.
+
+Geçmiş müşteri sayısı nedeniyle restoranın ücretsiz pakete geçmesi engellenmemelidir.
+
+### 8.7. Aylık Sayaçla İlgili Ek Kurallar
+
+- Her restoranın sayacı bağımsız olmalıdır.
+- Şubeler farklı restoran sayacını kullanmalıdır. Herhangi bir şube 100 sayısını geçerse sistem ücretliye yönlendirmeli. Her işletme için ayrı bir ücretli paket alınmalıdır. Bir işletmenin 10 şubesi varsa 10 adet ücretli paket alınmalı. Her şubeye ayrı ücretli paket alınmalıdır.  
+- Sayaç geçmiş ayların raporlarını korumalıdır.
+- Ay değişiminde yalnızca aktif aylık sayım dönemi yenilenmelidir.
+- Aynı müşterinin aynı ay içerisinde tekrar işlem yapması sayacı artırmamalıdır.
+- Eş zamanlı işlemlerde aynı müşterinin iki kez sayılması önlenmelidir.
+- Paket değişikliği geçmiş müşteri ve işlem kayıtlarını etkilememelidir.
+- Profesyonel pakette müşteri sayısı sınırsız olmalıdır.
+
+## 9. PLATFORM YÖNETİM PANELİ
+
+Platform yöneticisi tüm sistemi kontrol edebilmelidir.
+
+### 9.1. Genel İstatistikler
+
+- Toplam restoran sayısı.
+- Aktif restoran sayısı.
+- Toplam müşteri sayısı.
+- Aktif müşteri sayısı.
+- Toplam şube sayısı.
+- Toplam sadakat işlemi.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- Ücretsiz paket kullanan restoranlar.
+- Profesyonel paket kullanan restoranlar.
+- Aylık abonelik gelirleri.
+
+### 9.2. Restoran Yönetimi
+
+- Restoranları listeleme.
+- Restoran detaylarını görüntüleme.
+- Restoran başvurularını onaylama.
+- Restoranları reddetme.
+- Restoranları aktif veya pasif yapma.
+- Restoranların aboneliklerini görüntüleme.
+- Restoranların aylık müşteri sayılarını inceleme.
+
+### 9.3. Paket Yönetimi
+
+- Ücretsiz ve Profesyonel paketleri yönetme.
+- Profesyonel paket fiyatını belirleme.
+- Paket açıklamalarını düzenleme.
+- Abonelik durumlarını görüntüleme.
+- Abonelik başlangıç ve bitiş tarihlerini takip etme.
+
+Ücretsiz paketin 100 müşteri sınırı ve Profesyonel paketin sınırsız müşteri özelliği platformun temel iş kurallarıdır.
+
+### 9.4. Sponsorlu Restoranlar
+
+Platform gelir modellerinden biri sponsorlu restoran listelemeleri olabilir.
+
+Platform yöneticisi restoranları belirli alanlarda sponsorlu olarak öne çıkarabilmelidir.
+
+Sponsorlu restoranlar normal listelemelerden görsel olarak ayrılmalı ve sponsorlu oldukları açıkça belirtilmelidir.
+
+## 10. RAPORLAMA VE ANALİZ
+
+Restoran yöneticileri aşağıdaki raporları inceleyebilmelidir:
+
+- Günlük müşteri sayısı.
+- Aylık tekil müşteri sayısı.
+- Toplam müşteri sayısı.
+- Yeni müşteriler.
+- Tekrar gelen müşteriler.
+- Kazandırılan toplam ödül.
+- Kullandırılan toplam ödül.
+- Kullanılabilir ödül bakiyesi.
+- Şube bazında müşteri ve işlem performansı.
+- Kampanya performansı.
+- En aktif müşteriler.
+- Günlük, haftalık ve aylık işlem istatistikleri.
+
+Platform yöneticisi ise bütün restoranların performansını bir arada inceleyebilmelidir.
+
+## 11. BİLDİRİMLER
+
+Müşterilere gönderilebilecek bildirimler:
+
+- Ödül kazandınız.
+- Ödül kullandınız.
+- Yeni kampanya başladı.
+- Favori restoranınızda yeni kampanya var.
+- Ödül bakiyeniz güncellendi.
+
+Restoran yöneticilerine gönderilebilecek bildirimler:
+
+- Aylık müşteri sayısı 80'e ulaştı.
+- Aylık müşteri sayısı 90'a ulaştı.
+- Ücretsiz paket müşteri sınırı doldu.
+- Profesyonel pakete geçiş gerekli.
+- Abonelik süresi sona eriyor.
+- Yeni müşteri işlemi gerçekleştirildi.
+
+## 12. ÖDÜL SİSTEMİNİN İŞ KURALLARI
+
+Ödül sistemi tutarlı ve şeffaf çalışmalıdır.
+
+- Ödül yalnızca uygun harcama tutarı üzerinden hesaplanmalıdır.
+- Ödül oranı ilgili restoranın belirlediği orana göre uygulanmalıdır.
+- Kazanılan ödül yalnızca ilgili restoranın kumbarasına eklenmelidir.
+- Ödül kullanımı müşterinin mevcut bakiyesinden düşülmelidir.
+- Kullanılan ödül tutarı yeni ödül kazancı oluşturmamalıdır.
+- İptal veya iade işlemlerinde ilgili ödül hareketleri düzeltilmelidir.
+- Müşteri bakiyesi negatif olamaz.
+- Her ödül kazanma ve kullanma işlemi geçmişte izlenebilir olmalıdır.
+- Müşteri ve restoran işlemleri yetkilendirilmiş kullanıcılar tarafından gerçekleştirilmelidir.
+
+Örnek:
+
+Müşterinin restoran hesabı 1.000 TL olsun ve müşteri 300 TL ödül kullansın.
+
+Müşterinin ödeyeceği tutar 700 TL olur. Restoranın ödül politikası farklı bir kural belirtmiyorsa yeni ödül yalnızca uygun gerçek harcama tutarı olan 700 TL üzerinden hesaplanır.
+
+%10 ödül oranında müşteri 70 TL yeni ödül kazanır.
+
+## 13. TASARIM VE KULLANICI DENEYİMİ
+
+Uygulamanın tasarımı modern, sade, hızlı ve kolay kullanılabilir olmalıdır.
+
+- Mobil uygulama öncelikli bir deneyim sunmalıdır.
+- Restoranların ödül oranları kolay fark edilmelidir.
+- Kumbara bakiyeleri anlaşılır biçimde gösterilmelidir.
+- Restoran paneli teknik bilgisi olmayan işletme sahiplerinin de rahatlıkla kullanabileceği şekilde tasarlanmalıdır.
+- Menü yönetimi kolay ve hızlı olmalıdır.
+- Web sitesi mobil uyumlu ve arama motorlarına uygun olmalıdır.
+- Sponsorlu içerikler açıkça işaretlenmelidir.
+- Kullanıcıların kişisel ve finansal nitelikteki işlem bilgileri güvenli şekilde korunmalıdır.
+
+## 14. GELİR MODELİ
+
+Platformun temel gelir kaynağı Profesyonel restoran abonelikleridir.
+
+Ücretsiz paket restoranların sisteme katılmasını ve müşteri kazanmaya başlamasını sağlar.
+
+Restoran aylık 100 farklı müşteriye ulaştığında Profesyonel pakete geçerek müşteri sınırını kaldırabilir.
+
+Ek gelir kaynakları:
+
+- Sponsorlu restoran listelemeleri.
+- Öne çıkarılmış restoran profilleri.
+- İlerleyen dönemlerde sunulabilecek reklam ve tanıtım hizmetleri.
+
+Ücretsiz paketin amacı restoranları platforma kazandırmak; Profesyonel paketin amacı büyüyen restoranların müşteri sınırına takılmadan sadakat sistemini kullanmaya devam etmesini sağlamaktır.
+
+## 15. GENEL ÜRÜN PRENSİPLERİ
+
+Geliştirilecek sistem aşağıdaki temel prensiplere uygun olmalıdır:
+
+1. Müşteri açısından bütün restoranların kumbaraları tek mobil uygulamada bulunmalıdır.
+2. Her restoranın ödül bakiyesi diğer restoranlardan tamamen bağımsız olmalıdır.
+3. Restoranlar kendi menülerini, fiyatlarını, şubelerini ve ödül oranlarını yönetebilmelidir.
+4. Müşteriler restoranları ve ödül oranlarını kolayca karşılaştırabilmelidir.
+5. İlk sürümde online sipariş ve ödeme bulunmamalıdır.
+6. Ücretsiz ve Profesyonel paketlerde bütün özellikler aynı olmalıdır.
+7. Paketler arasındaki tek fark aylık tekil müşteri sınırıdır.
+8. Ücretsiz pakette aynı müşteri bir ay içerisinde kaç işlem yaparsa yapsın yalnızca bir kez sayılmalıdır.
+9. Aylık sayaç her ayın 1'inde sıfırlanmalıdır.
+10. Ücretli paketten ücretsiz pakete geçişte geçmiş müşteri sayısı bir engel oluşturmamalıdır.
+11. Müşteri bakiyeleri ve işlem geçmişleri paket değişikliklerinden etkilenmemelidir.
+12. Platformun temel amacı restoranların müşteri sadakatini artırmak ve müşterilerin farklı restoranlardaki ödüllerini tek bir uygulamada yönetmesini sağlamaktır.
+
+## 16. RESTORAN PUANLAMA VE YORUM SİSTEMİ
+
+Müşteriler platformdaki restoranlara 10 üzerinden puan verebilmeli ve yorum yazabilmelidir.
+
+Bu özellik hem web sitesinde hem de mobil uygulamada bulunmalıdır.
+
+Amaç, müşterilerin restoran deneyimlerini paylaşmasını ve diğer müşterilerin restoran tercihlerini gerçek kullanıcı değerlendirmelerine göre yapabilmesini sağlamaktır.
+
+### Puanlama Sistemi
+
+Puanlama 10 üzerinden yapılmalıdır.
+
+En düşük puan: 1
+
+En yüksek puan: 10
+
+Puanlar sayısal olarak gösterilmelidir.
+
+Yıldız simgeleri kesinlikle kullanılmamalıdır.
+
+Puanlar 10 üzerinden ondalıklı ortalama olarak hesaplanmalıdır.
+
+Örnek gösterimler:
+
+8.7 / 10
+
+9.2 / 10
+
+7.8 / 10
+
+6.5 / 10
+
+Restoranın genel puanı, geçerli müşteri değerlendirmelerinin aritmetik ortalaması olarak hesaplanmalıdır.
+
+Ortalama puan kullanıcı arayüzünde bir ondalık basamakla gösterilmelidir.
+
+Puanın yanında toplam değerlendirme sayısı da gösterilmelidir.
+
+Örnek:
+
+8.7 / 10 — 245 değerlendirme
+
+Hiç değerlendirmesi bulunmayan restoranlarda puan yerine "Henüz değerlendirme yok" ifadesi gösterilmelidir.
+
+### Yorum Yazma
+
+Müşteriler restoranlara yazılı yorum bırakabilmelidir.
+
+Yorumlarda:
+
+Müşterinin verdiği puan.
+
+Yazılı yorum.
+
+Yorum tarihi.
+
+Müşterinin görünen adı veya gizlilik tercihine uygun kullanıcı bilgisi.
+
+gösterilmelidir.
+
+Yorumlar restoranın herkese açık detay sayfasında yayınlanmalıdır.
+
+Müşteriler kendi yorumlarını görüntüleyebilmeli ve gerektiğinde düzenleyebilmelidir.
+
+Uygunsuz, hakaret içeren, reklam amaçlı veya platform kurallarına aykırı yorumlar raporlanabilmelidir.
+
+Platform yöneticisi şikâyet edilen yorumları inceleyebilmeli ve gerekli durumlarda kaldırabilmelidir.
+
+Restoran yöneticisi müşteri yorumlarına cevap verebilmelidir. Ancak restoran yöneticisi müşteri yorumlarını kendisi silememeli veya puanları değiştirememelidir.
+
+### Gerçek Müşteri Değerlendirmesi
+
+Puanlama ve yorum sistemi güvenilir olmalıdır.
+
+Yalnızca ilgili restoranda doğrulanmış bir sadakat işlemi gerçekleştirmiş müşteriler o restoranı değerlendirebilmelidir.
+
+Böylece rastgele hesaplarla veya restoranla hiçbir alışveriş ilişkisi olmayan kişiler tarafından yapılan değerlendirmelerin önüne geçilmesi hedeflenmelidir.
+
+Her müşteri aynı restoran için bir geçerli değerlendirmeye sahip olmalıdır. Müşteri daha sonra yorumunu ve puanını güncelleyebilmelidir.
+
+Bir müşterinin aynı restoran için birden fazla hesap kullanarak değerlendirme yapmasını engellemeye yönelik kontroller bulunmalıdır.
+
+### Restoran Detay Sayfasında Değerlendirmeler
+
+Restoran detay sayfasında aşağıdaki bilgiler gösterilmelidir:
+
+Restoranın ortalama puanı.
+
+Toplam değerlendirme sayısı.
+
+Müşterilerin yazdığı yorumlar.
+
+Yorumların tarihleri.
+
+Restoranın yorumlara verdiği cevaplar.
+
+Yorumlar en yeni, en eski ve puana göre sıralanabilmelidir.
+
+Restoranların genel listeleme ekranlarında da ortalama puanları gösterilmelidir.
+
+Örnek restoran kartı:
+
+Restoran A
+
+8.7 / 10
+
+245 değerlendirme
+
+%10 ödül kazan
+
+Restoran B
+
+9.2 / 10
+
+128 değerlendirme
+
+%8 ödül kazan
+
+Bu sayede müşteri restoranları yalnızca sundukları ödül oranına göre değil, diğer müşterilerin deneyimlerine göre de karşılaştırabilir.
+
+### Restoran Sıralama ve Filtreleme
+
+Web sitesi ve mobil uygulamada restoranlar puanlarına göre sıralanabilmelidir.
+
+Sıralama seçenekleri:
+
+En yüksek puanlı restoranlar.
+
+En çok değerlendirilen restoranlar.
+
+En yüksek ödül oranı.
+
+En popüler restoranlar.
+
+İstenirse minimum puana göre filtreleme de yapılabilmelidir.
+
+Puanı bulunmayan restoranlar, yüksek puanlı restoranlar arasında değerlendirme sayısı varmış gibi gösterilmemelidir.
+
+##  RESTORAN YÖNETİM PANELİNE EKLENECEK ÖZELLİKLER
+
+Restoran yöneticisi panelinde yeni bir "Değerlendirmeler" bölümü bulunmalıdır.
+
+Bu bölümde:
+
+Restoranın ortalama puanı.
+
+Toplam değerlendirme sayısı.
+
+Müşteri yorumları.
+
+Yorum tarihleri.
+
+Puan dağılımı.
+
+Yorumlara cevap verme alanı.
+
+bulunmalıdır.
+
+Restoran yöneticisi müşteri yorumlarını inceleyebilmeli ve müşterilere cevap yazabilmelidir.
+
+Restoran yöneticisinin kendi puanını veya müşteri yorumlarını değiştirme yetkisi bulunmamalıdır.
+
+##  MÜŞTERİ MOBİL UYGULAMASINA EKLENECEK ÖZELLİKLER
+
+Müşterinin profil ekranında benzersiz müşteri numarası açıkça gösterilmelidir.
+
+Örnek:
+
+Müşteri Numaram: 125
+
+Numara kolayca kopyalanabilmelidir.
+
+Müşteri ayrıca:
+
+Kendi yazdığı yorumları görüntüleyebilmeli.
+
+Restoranlara puan verebilmeli.
+
+Yorum yazabilmeli.
+
+Önceki yorumlarını düzenleyebilmeli.
+
+Restoranların ortalama puanlarını görebilmeli.
+
+Diğer müşterilerin yorumlarını okuyabilmelidir.
+
+## WEB SİTESİNE EKLENECEK ÖZELLİKLER
+
+Restoranların herkese açık detay sayfalarında puan ve yorum alanı bulunmalıdır.
+
+Restoran listeleme kartlarında ortalama puan sayısal biçimde gösterilmelidir.
+
+Restoran keşif ekranında müşteriler puana göre sıralama yapabilmelidir.
+
+Puanlar her zaman 10 üzerinden sayısal olarak gösterilmeli, yıldızlı değerlendirme tasarımı kullanılmamalıdır.
+
+
+
+
+
+
+Bu gereksinimler doğrultusunda tutarlı ve ileride yeni özelliklerle genişletilebilecek bir restoran sadakat platformu geliştirilmelidir.

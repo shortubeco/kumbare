@@ -1,0 +1,927 @@
+# RESTORAN KUMBARA VE DİJİTAL SADAKAT PLATFORMU
+## Ürün Gereksinimleri ve İş Modeli (Güncellenmiş Sürüm)
+
+> Bu sürüm, ilk iş planındaki çelişkiler ve eksikler netleştirilerek güncellenmiştir. Orijinal metin "iş planı (orijinal).txt" dosyasında saklanmaktadır.
+
+## 0. TEMEL KAVRAMLAR
+
+- **İşletme (Marka):** Bir veya birden fazla şubesi olan restoran markası. Menü ve fiyatlar işletmeye aittir.
+- **Şube:** İşletmeye bağlı, sadakat sistemi açısından tamamen bağımsız çalışan restoran. Şubeler genellikle franchise yöntemiyle çalıştığı ve muhasebeleri birbirinden bağımsız olduğu için her şube ayrı bir restoran gibi ele alınır.
+- **Kumbara:** Bir müşterinin belirli bir şubedeki ödül bakiyesi. Her müşteri-şube çifti için ayrı bir kumbara bulunur.
+
+Bu belgede sadakat sistemi, sayaç, abonelik, puanlama ve listeleme bağlamında geçen "restoran" ifadesi **şube** anlamına gelir.
+
+## 1. PROJENİN AMACI
+
+Restoranların müşterilerine alışveriş yaptıkça ödül kazandırabildiği, müşterilerin ise farklı restoranlarda biriktirdikleri ödülleri tek bir mobil uygulama üzerinden takip edebildiği dijital sadakat platformu geliştirilecektir.
+
+Platform üç ana bölümden oluşacaktır:
+
+1. **Herkese açık web sitesi:** Restoranların (şubelerin), menülerinin, fiyatlarının ve sundukları ödül oranlarının tanıtıldığı platform.
+2. **Müşteri mobil uygulaması:** Müşterilerin restoranları keşfettiği, menüleri incelediği, müşteri numarasıyla ödül kazandığı ve şube bazında biriktirdiği bakiyeleri takip ettiği uygulama.
+3. **Yönetim panelleri:** İşletme yöneticisinin, şube yöneticilerinin ve çalışanların işletmeyi, şubeleri, menüleri, müşterileri ve sadakat işlemlerini yönettiği; platform yöneticisinin ise bütün sistemi kontrol ettiği yönetim alanları.
+
+Temel amaç, restoranların müşteri sadakatini artırmak, müşterilerin farklı restoranlardaki ödüllerini tek bir yerde biriktirmesini sağlamak ve restoranlara yeni müşteriler kazandırabilecek bir keşif platformu oluşturmaktır.
+
+## 2. TEMEL İŞ MODELİ
+
+Platformda her şubenin kendisine ait bağımsız bir sadakat sistemi bulunacaktır.
+
+Örneğin:
+
+- Restoran A (Kadıköy şubesi), müşterilerine %10 ödül oranı sunar.
+- Restoran A (Beşiktaş şubesi), müşterilerine %5 ödül oranı sunar.
+- Restoran B, müşterilerine %15 ödül oranı sunar.
+- Restoran C (Fatih şubesi), ödül sunmaz (%0).
+
+Bir müşteri Restoran A Kadıköy şubesinde 1.000 TL tutarında uygun bir harcama yaptığında %10 oran üzerinden 100 TL ödül kazanır.
+
+Bu 100 TL yalnızca Restoran A Kadıköy şubesinde kullanılabilir. Aynı markanın başka bir şubesinde veya başka bir restoranda kullanılamaz.
+
+Aynı müşteri Restoran A Beşiktaş şubesinde de alışveriş yaparsa bu şube için ayrı bir kumbara bakiyesi oluşur.
+
+Dolayısıyla müşterinin mobil uygulamasında her şubenin bakiyesi ayrı ayrı görüntülenir.
+
+**Önemli iş kuralları:**
+
+- Her şubenin ödül sistemi bağımsızdır.
+- Şube yöneticisi kendi şubesinin ödül oranını belirler (%0 – %100).
+- Müşteri kazandığı ödülü yalnızca ödülü kazandığı şubede kullanabilir.
+- Şubeler başka şubelerin (aynı markaya ait olsalar bile) müşteri bakiyelerini kullanamaz.
+- Müşterinin bütün şubelerdeki bakiyeleri tek mobil uygulamada görüntülenebilir.
+- Ödül bakiyesi nakit para değildir; müşteriye ilgili şubede sunulan sadakat avantajıdır.
+- Müşteri bakiyesini başka bir müşteriye devredemez veya nakit olarak çekemez.
+- Ödüllerin son kullanma süresi yoktur.
+- Ödül kullanımında alt veya üst sınır yoktur; müşteri bakiyesi kadar ödül kullanabilir.
+- Tutarlarda kuruşlar korunur, yuvarlama yapılmaz (2 ondalık basamak).
+
+## 3. MVP KAPSAMI VE SINIRLARI
+
+İlk sürümün temel amacı restoran keşfi, menü inceleme ve fiziksel restoranda sadakat işlemleridir.
+
+İlk sürümde bulunacak özellikler:
+
+- Restoran (şube) listeleme ve keşfetme.
+- Şube profilleri.
+- İşletme menüleri ve fiyatları.
+- Şubelerin ödül oranlarının karşılaştırılması.
+- Müşteri üyeliği ve mobil uygulama.
+- Şube bazında ayrı kumbara bakiyeleri.
+- İşlem geçmişi.
+- İşletme ve şube yönetim panelleri.
+- Platform yönetim paneli.
+- Şube kampanyaları ve kampanya bildirimleri.
+- Abonelik ve paket yönetimi.
+- Puanlama ve yorum sistemi.
+
+**İlk sürümde bulunmayacak özellikler:**
+
+- Online yemek siparişi.
+- Online ödeme alma (müşteriden).
+- Kredi kartı veya banka kartı işlemleri.
+- Kurye ve teslimat yönetimi.
+- Restoranlar arasında sipariş yönlendirme.
+- Platform üzerinden yemek satın alma veya ödeme yapma.
+- Ürün bazlı kampanyalar (ödül yalnızca toplam harcama üzerinden hesaplanır).
+- Ödül işlemlerinde iptal / iade akışı (hatalar yalnızca düzeltme kaydıyla giderilir, bkz. 12).
+- Çoklu dil ve çoklu para birimi (arayüz yalnızca Türkçe, para birimi yalnızca TL).
+
+Müşteri restorana gider, siparişini verir ve ödemesini restoranın mevcut ödeme yöntemleriyle doğrudan restorana yapar. Kumbara sistemi yalnızca sadakat ödüllerinin kazanılması ve kullanılması için çalışır.
+
+İlerleyen sürümlerde online sipariş ve ödeme özellikleri eklenebilecek şekilde ürün genişletilebilir; ancak bunlar ilk sürümün kapsamına dahil değildir.
+
+## 4. KULLANICI ROLLERİ
+
+Platformda altı kullanıcı rolü bulunacaktır.
+
+### 4.1. Ziyaretçi
+
+Üyelik oluşturmadan herkese açık web sitesini kullanabilir.
+
+Yapabilecekleri:
+
+- Restoranları (şubeleri) listelemek.
+- Restoranları şehir/ilçe, en yüksek puan alan, en çok puanlanan, ödül oranı ya da kategoriye göre filtrelemek.
+- Restoranların ödül oranlarını karşılaştırmak.
+- Restoran menülerini ve fiyatlarını incelemek.
+- Restoran detay sayfalarını görüntülemek.
+- Restoranların konum ve iletişim bilgilerini görmek.
+- Puan ve yorumları okumak.
+- Üye olmaya yönlendirilmek.
+
+### 4.2. Müşteri
+
+Mobil uygulama üzerinden üye olur ve platformu kullanır.
+
+Yapabilecekleri:
+
+- Üye olmak ve giriş yapmak.
+- Profil bilgilerini (şehir/ilçe dahil) yönetmek.
+- Restoranları keşfetmek.
+- Restoranları konum, kategori ve ödül oranına göre filtrelemek.
+- Restoran menülerini ve fiyatlarını incelemek.
+- Restoranları favorilerine eklemek.
+- Her şubeye ait kumbara bakiyesini görüntülemek.
+- Kazanılan ve kullanılan ödüllerin geçmişini incelemek.
+- Kendi müşteri numarasını görüntülemek ve kopyalamak.
+- Ödül kullanım ve düzeltme isteklerini onaylamak veya reddetmek.
+- Kendi ilçesindeki restoranların kampanyalarını takip etmek.
+- Ödül kazandığı şubelere puan vermek ve yorum yazmak.
+
+### 4.3. İşletme (Marka) Yöneticisi
+
+Her işletmenin tek bir işletme yöneticisi vardır. İşletme adına hesap açar ve markayı yönetir.
+
+Yapabilecekleri:
+
+- İşletme (marka) profilini oluşturmak ve düzenlemek.
+- Şube eklemek, silmek, aktif/pasif yapmak.
+- Her şube için şube yöneticisi hesabını oluşturmak.
+- Bütün şubelerini tek hesaptan görüntülemek.
+- Menüyü oluşturmak ve yönetmek (menü ve fiyatlar markaya aittir, tüm şubelerde aynıdır).
+- Menü kategorileri oluşturmak.
+- Ürün eklemek, düzenlemek ve silmek.
+- Ürün fiyatlarını güncellemek.
+- Ürün açıklaması ve görseli eklemek.
+- Şube bazında ve işletme genelinde raporları görüntülemek.
+- Şubelerin çalışanlarını ve abonelik durumlarını görüntülemek.
+
+### 4.4. Şube Yöneticisi
+
+Her şubenin bir şube yöneticisi vardır. Hesabı işletme yöneticisi tarafından oluşturulur.
+
+Yapabilecekleri:
+
+- Şube bilgilerini (adres, iletişim, çalışma saatleri, görseller) düzenlemek.
+- Şubenin ödül oranını belirlemek (%0 – %100).
+- Şube kampanyalarını oluşturmak.
+- Çalışanlarını sisteme eklemek ve yetki vermek.
+- Müşteri numarası ile ödül kazandırmak ve ödül kullandırmak.
+- Şube müşterilerini ve işlem geçmişlerini görüntülemek.
+- Düzeltme isteği oluşturmak; düzeltme müşteri onayıyla gerçekleşir (bkz. 7.7).
+- Şube raporlarını görüntülemek.
+- Yorumlara cevap vermek.
+- Şubenin abonelik paketini görüntülemek, Profesyonel paket için havale ödemesini yapıp bildirmek.
+
+### 4.5. Çalışan
+
+Her çalışan tek bir şubeye bağlıdır ve işlemleri web panel üzerinden yapar. Yalnızca kendisine verilen yetkiler kapsamında işlem yapabilir (bkz. 7.9).
+
+### 4.6. Platform Yöneticisi
+
+Platformun tamamını yönetir.
+
+Yapabilecekleri:
+
+- İşletmeleri ve şubeleri görüntülemek.
+- İşletme başvurularını incelemek ve onaylamak.
+- İşletme/şube hesaplarını askıya almak veya kapatmak.
+- Müşterileri görüntülemek ve yönetmek.
+- Restoran kategorilerini yönetmek.
+- Abonelik paketlerini ve fiyatlarını yönetmek.
+- Havale ödemelerini kontrol edip şube bazında Profesyonel paketi elle aktif etmek.
+- Sponsorlu restoranları yönetmek ve sponsorluk ödemelerini elle onaylamak.
+- Ücretsiz paketin aylık müşteri limitini ayarlamak.
+- Kampanya ve duyuruları yönetmek.
+- Şikâyet edilen yorumları incelemek ve kaldırmak.
+- Platform kullanım istatistiklerini görüntülemek.
+- Genel raporları incelemek.
+- İşlem kayıtlarını ve yönetim faaliyetlerini denetlemek.
+
+## 5. HERKESE AÇIK WEB SİTESİ
+
+Web sitesi platformun tanıtım ve restoran keşif alanıdır.
+
+### 5.1. Ana Sayfa
+
+Ana sayfada aşağıdaki alanlar bulunmalıdır:
+
+- Platformun ne işe yaradığını anlatan tanıtım alanı.
+- Öne çıkan (sponsorlu) restoranlar.
+- Yakındaki restoranlar.
+- En yüksek ödül oranı sunan restoranlar.
+- Yeni eklenen restoranlar.
+- Popüler restoran kategorileri.
+- Kampanyalı restoranlar.
+- Restoran arama alanı.
+- Mobil uygulamaya yönlendirme alanı.
+- Restoran işletmelerine yönelik kayıt ve tanıtım alanı.
+
+### 5.2. Restoran Listeleme
+
+Her şube listede ayrı bir kart olarak gösterilir.
+
+Her restoran kartında:
+
+- Restoran (işletme) adı ve şube adı.
+- Restoran görseli veya logosu.
+- Kategori.
+- Konum.
+- Şube puanı ve değerlendirme sayısı (bkz. 16).
+- Ödül yüzdesi (%0 olan şubelerde "Ödül yok" ifadesi).
+- Ödül sisteminin kısa açıklaması.
+- Restoran detay sayfasına yönlendirme. Detay sayfasında iletişim, ulaşım, foto galeri, menüler ve fiyatlar olmalı.
+
+bulunmalıdır.
+
+Restoranlar aşağıdaki kriterlere göre filtrelenebilmelidir:
+
+- Restoran kategorisi.
+- Konum (şehir/ilçe).
+- Ödül yüzdesi.
+- Kampanyalar.
+- Yeni eklenen restoranlar.
+- Popüler restoranlar.
+- Müşteri puanları (minimum puan).
+
+Sıralama seçenekleri:
+
+- En yüksek ödül oranı.
+- En düşük ödül oranı.
+- En popüler restoranlar (tekil işlem sayısına göre).
+- En yeni restoranlar.
+- En yüksek puan alanlar (en az 10 farklı müşteri tarafından puanlanmış olmalıdır; 10'dan az değerlendirmesi olanlar bu sıralamaya girmez).
+- En çok puanlananlar (en çok sayıda müşteri tarafından puan almış olanlar).
+
+Sponsorlu restoranlar listelerde daha görünür konumlandırılabilir; ancak sponsorlu oldukları açıkça belirtilmelidir.
+
+### 5.3. Restoran (Şube) Detay Sayfası
+
+Her şubenin kendisine ait herkese açık bir detay sayfası bulunmalıdır.
+
+Bu sayfada:
+
+- Şube puanı, restoran adı, şube adı ve logosu.
+- Şube görselleri (foto galeri).
+- Açıklama.
+- Kategori.
+- Adres ve konum (harita / ulaşım).
+- İletişim bilgileri.
+- Çalışma saatleri.
+- Ödül kazanma yüzdesi.
+- Ödül kullanma koşulları.
+- Menü kategorileri.
+- Ürünler ve fiyatları (marka menüsü).
+- Şubenin aktif kampanyaları.
+- Aynı markanın diğer şubelerine bağlantılar.
+- Puan ve yorumlar (bkz. 16).
+
+gösterilmelidir.
+
+Menü ve fiyatlar işletme yönetim panelinden güncellendiğinde web sitesine ve mobil uygulamaya da yansımalıdır.
+
+## 6. MÜŞTERİ MOBİL UYGULAMASI
+
+Mobil uygulama React Native (Expo) ile iOS ve Android için geliştirilecektir.
+
+### 6.1. Üyelik ve Giriş
+
+Uygulama açıldığında ilk olarak giriş (login) ekranı görünür:
+
+- E-posta ve şifre alanları.
+- Giriş butonu.
+- Kayıt ol butonu.
+- Şifremi unuttum bağlantısı.
+
+E-posta ve şifre girildikten sonra uygulama açılır.
+
+Kayıt ekranında şu alanlar bulunur:
+
+- Ad.
+- Soyad.
+- Telefon.
+- Şehir.
+- İlçe.
+- Doğum tarihi (doğum günü kampanyaları için; müşteri tarafından sonradan değiştirilemez).
+- E-posta adresi.
+- Şifre.
+- Şifre tekrar.
+
+E-posta doğrulaması yapılmayacaktır.
+
+Müşteriler ayrıca:
+
+- Şifrelerini sıfırlayabilir.
+- Profil bilgilerini (şehir/ilçe dahil) düzenleyebilir.
+
+### 6.2. Ana Ekran
+
+Ana ekranda:
+
+- Yakındaki restoranlar.
+- Öne çıkan restoranlar.
+- En yüksek ödül oranları.
+- Kampanyalar.
+- Favori restoranlar.
+- Yeni eklenen restoranlar.
+- Restoran arama alanı.
+
+bulunmalıdır.
+
+Uygulamada iki ayrı buton bulunur: **Bildirimler** ve **Kampanyalar** (bkz. 11).
+
+### 6.3. Restoran Keşfi
+
+Müşteriler restoranları konumlarına, kategorilerine, ödül oranlarına ve puanlarına göre keşfedebilmelidir.
+
+Bir şube seçildiğinde menüsü, fiyatları, ödül yüzdesi, adresi, kampanyaları, puanı ve yorumları görüntülenebilmelidir.
+
+### 6.4. Kumbara Ekranı
+
+Mobil uygulamanın en önemli bölümlerinden biri kumbara ekranıdır.
+
+Müşteri, işlem yaptığı her şube için ayrı bir kumbara görmelidir.
+
+Örnek:
+
+| Restoran / Şube | Biriken ödül |
+|---|---:|
+| Restoran A – Kadıköy | 250,00 TL |
+| Restoran A – Beşiktaş | 120,50 TL |
+| Restoran B | 85,75 TL |
+| Restoran D | 340,00 TL |
+
+Kumbara seçildiğinde:
+
+- Mevcut bakiye.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- İşlem geçmişi (düzeltme kayıtları dahil).
+- Ödül kullanım koşulları.
+- Şubenin detay sayfasına yönlendiren bağlantı. Tıklandığında web sitesindeki gibi bir detay sayfası açılmalıdır.
+
+gösterilmelidir.
+
+Müşteri bir şubenin bakiyesini başka bir şubede kullanamamalıdır.
+
+### 6.5. Müşteri Numarası Sistemi
+
+#### 6.5.1. Müşteri Numarası
+
+Platforma üye olan her müşteriye otomatik olarak benzersiz bir müşteri numarası atanmalıdır.
+
+- Her müşteri için tek ve benzersiz bir numara oluşturulmalıdır.
+- Müşteri numarası yalnızca rakamlardan oluşmalıdır.
+- İlk müşteri numarası 1 olmalıdır; sonraki müşterilere sırasıyla 2, 3, 4, 5… şeklinde numara verilmelidir.
+- Numara üretiminde üst sınır bulunmamalıdır.
+- Silinen veya pasif duruma getirilen müşterilerin numaraları başka müşterilere verilmemelidir.
+- Müşteri numarası müşterinin hesabına kalıcı olarak bağlı olmalı ve değiştirilememelidir.
+- Müşteri numarası platform genelinde benzersiz olmalıdır.
+
+Müşteri profil ekranında numarasını açıkça görebilmeli ve kolayca kopyalayabilmelidir.
+
+Örnek: **Müşteri Numaram: 125**
+
+Müşteri restorana gittiğinde numarasını personele söyleyerek hesabının bulunmasını sağlar.
+
+Personel numarayı girdiğinde müşterinin **adı ve soyadı** gösterilir. Böylece yanlış müşteriyle işlem yapılması önlenir.
+
+Müşteri numarası tek başına ödül kullanımı yetkisi sağlamaz; ödül kullanımı her zaman müşterinin mobil uygulamadan onayını gerektirir. Personel yalnızca bağlı olduğu şube kapsamında müşteri bilgilerini görüntüleyebilir.
+
+#### 6.5.2. Müşteriye Ödül Kazandırma
+
+Ödül, müşteri harcamasını ödedikten sonra verilir. Müşteri onayı gerekmez.
+
+İşlem sırası:
+
+1. Müşteri şubede alışveriş yapar ve ödemesini yapar.
+2. Müşteri numarasını personele söyler.
+3. Personel yönetim panelinden müşteri numarasını girer.
+4. Sistem müşteriyi bulur; adı ve soyadı ile şubedeki mevcut kumbarası görüntülenir.
+5. Personel ödenen harcama tutarını girer.
+6. Sistem şubenin o anki ödül oranına göre kazanılacak miktarı hesaplar.
+7. Özet ekranı gösterilir (müşteri adı-soyadı, harcama tutarı, oran, kazanılacak ödül).
+8. Personel işlemi onaylar.
+9. Ödül müşterinin o şubedeki kumbarasına hemen eklenir.
+
+Şubenin ödül oranı %0 ise ödül kazandırma işlemi yapılamaz.
+
+Örnek:
+
+- Müşteri numarası: 125
+- Harcama tutarı: 1.000,00 TL
+- Şubenin ödül oranı: %10
+- Kazanılan ödül: 100,00 TL
+
+#### 6.5.3. Müşteriye Ödül Kullandırma
+
+Ödül kullanımı için müşterinin mobil uygulamadan onay vermesi zorunludur. **İndirimin ilk şartı onaydır.**
+
+İşlem sırası:
+
+1. Müşteri şubede biriktirdiği ödülü kullanmak ister.
+2. Müşteri numarasını personele söyler.
+3. Personel numarayı yönetim paneline girer.
+4. Sistem müşterinin adını-soyadını ve o şubedeki bakiyesini gösterir.
+5. Personel kullanılacak ödül miktarını girer.
+6. Sistem yeterli bakiye olup olmadığını kontrol eder.
+7. Özet ekranı gösterilir; personel onay isteğini gönderir.
+8. Onay isteği müşterinin mobil uygulamasındaki **Bildirimler** ekranına düşer.
+9. Müşteri isteği onaylar (veya reddeder).
+10. Onay anında bakiye tekrar kontrol edilir ve ödül kumbaradan düşülür.
+11. Personel panelinde işlemin "onaylandı" durumunu görür ve kalan tutarı müşteriden tahsil eder.
+
+Kurallar:
+
+- Müşteri onaylamadan personel indirim uygulayamaz.
+- Onay isteğinin süre sınırı yoktur; müşteri ne zaman onaylarsa işlem o zaman tamamlanır.
+- Telefonu yanında olmayan veya uygulamaya erişemeyen müşteri ödül kullanamaz.
+- Ödül kullanımı aylık müşteri limitinden bağımsızdır; limit dolmuş olsa da müşteri ödülünü kullanabilir.
+- Müşteri yalnızca ilgili şubede kazandığı ödülü kullanabilir.
+- Ödül oranı %0 olan bir şubede, müşterinin daha önce birikmiş bakiyesi varsa kullanılabilir.
+
+## 7. YÖNETİM PANELLERİ (İŞLETME, ŞUBE, ÇALIŞAN)
+
+İşletme yöneticisi, şube yöneticileri ve çalışanlar web üzerinden giriş yaparak işlemlerini yönetir. Her kullanıcı yalnızca rolünün ve yetkilerinin izin verdiği alanları görür.
+
+### 7.1. Genel Bakış
+
+Şube panelinin ana ekranında:
+
+- Toplam müşteri sayısı.
+- İçinde bulunulan ayın tekil müşteri sayısı.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- Kullanılabilir toplam ödül bakiyesi.
+- Günlük, haftalık ve aylık işlem sayıları.
+- En aktif müşteriler.
+- Abonelik bilgisi.
+- Aylık müşteri limiti ve kullanım durumu.
+
+gösterilmelidir.
+
+İşletme panelinin ana ekranında yukarıdaki bilgiler şube bazında ve işletme toplamı olarak, şube performans karşılaştırmasıyla birlikte gösterilmelidir.
+
+### 7.2. İşletme ve Şube Yönetimi
+
+İşletme yöneticisi:
+
+- İşletme bilgilerini düzenleyebilmeli.
+- Şube ekleyip silebilmeli, aktif veya pasif duruma getirebilmeli.
+- Her şube için şube yöneticisi hesabı oluşturabilmelidir.
+
+Şube yöneticisi:
+
+- Şube adres ve iletişim bilgilerini yönetebilmeli.
+- Şube çalışma saatlerini belirleyebilmeli.
+- Şube görsellerini yönetebilmelidir.
+
+Her şube sadakat sistemi açısından bağımsızdır: ayrı kumbara, ayrı ödül oranı, ayrı aylık müşteri sayacı, ayrı abonelik paketi, ayrı puan ve yorumlar.
+
+### 7.3. Menü Yönetimi
+
+Menü işletmeye (markaya) aittir ve işletme yöneticisi tarafından yönetilir. Menü ve fiyatlar tüm şubelerde aynıdır.
+
+- Menü kategorileri ekleyebilmelidir.
+- Ürün ekleyip düzenleyebilmelidir.
+- Ürünleri silebilmelidir.
+- Ürün görseli yükleyebilmelidir.
+- Ürün açıklaması girebilmelidir.
+- Ürün fiyatlarını belirleyebilmelidir.
+- Ürünleri geçici olarak satışa kapatabilmelidir.
+
+Menü değişiklikleri herkese açık web sitesine ve mobil uygulamaya, markanın tüm şubeleri için yansımalıdır.
+
+### 7.4. Ödül Oranı Yönetimi
+
+Ödül oranını şube yöneticisi belirler.
+
+- Oran %0 ile %100 arasında olabilir.
+- Yeni açılan şubede varsayılan oran %0'dır.
+- %0 oran, şubenin ödül sunmadığı anlamına gelir.
+- Oran değişikliği yalnızca sonraki işlemleri etkiler. Her işlem, işlem anındaki oranla hesaplanır ve bu oran işlem kaydında saklanır.
+
+Müşteriler restoranları incelerken bu oranı açıkça görebilmelidir.
+
+### 7.5. Müşteri Yönetimi
+
+Şube yöneticisi (ve yetkili çalışanlar):
+
+- Şubede işlem yapan müşterileri görüntüleyebilmelidir.
+- Müşteri bazında toplam kazanılan ödülü görebilmelidir.
+- Müşterinin şubedeki mevcut bakiyesini görebilmelidir.
+- İşlem geçmişini inceleyebilmelidir.
+
+İşletme yöneticisi bu bilgileri tüm şubeleri için şube bazında görüntüleyebilir.
+
+Bir şube yalnızca kendi müşterilerinin sadakat bilgilerine erişebilmelidir.
+
+### 7.6. Kampanya Yönetimi
+
+Kampanyaları şube yöneticisi oluşturur ve kampanyalar yalnızca ilgili şubede geçerlidir.
+
+Örnekler:
+
+- Belirli tarihlerde ekstra ödül.
+- Hafta içi özel ödül oranı.
+- Yeni müşterilere özel kampanya.
+- Doğum günü kampanyası: Personel müşteri numarasını girdiğinde, o gün müşterinin doğum günüyse doğum günü kampanyası da kampanya listesinde görünür. Kullanım sayısına sınır yoktur; uygun kampanyayı personel seçer.
+- İndirim duyuruları.
+
+Kampanyaların başlangıç ve bitiş tarihleri ve kullanım koşulları tanımlanabilmelidir.
+
+Ödül hesaplaması her zaman toplam harcama tutarı üzerinden yapılır; ürün bazlı kampanyalar ilk sürümde yoktur.
+
+Ödül oranını değiştiren kampanyalar işlem sırasında personel tarafından seçilir: Ödül kazandırma ekranında o müşteri için geçerli kampanyalar listelenir, personel birini seçer (veya kampanyasız devam eder) ve seçilen kampanyanın oranı uygulanır. Kampanya oranları toplanmaz.
+
+Kampanyalar, şubenin bulunduğu ilçeyi kayıtlı ilçe olarak seçmiş müşterilerin mobil uygulamasındaki **Kampanyalar** alanında gösterilir. Anlık (push) bildirim gönderilmez.
+
+### 7.7. Düzeltme Kaydı
+
+İptal veya iade akışı yoktur. Personelin hatalı girdiği bir işlem silinmez.
+
+Şube yöneticisi, hatalı bir işlemi düzeltmek için **düzeltme isteği** oluşturabilir. Düzeltme kaydı, ilgili işleme bağlı ters bir hareketle bakiyeyi düzeltir.
+
+**Düzeltme müşteri onayı gerektirir.** Art niyetli kişilerin müşterinin izni olmadan bakiyesini değiştirmesini önlemek için:
+
+1. Şube yöneticisi düzeltilecek işlemi seçer, düzeltme tutarını ve açıklamasını girer.
+2. Özet ekranı gösterilir; şube yöneticisi düzeltme isteğini gönderir.
+3. İstek müşterinin mobil uygulamasındaki **Bildirimler** ekranına düşer (orijinal işlem, düzeltme tutarı ve açıklama ile birlikte).
+4. Müşteri onaylarsa düzeltme kaydı oluşturulur ve bakiye güncellenir. Reddederse bakiye değişmez ve istek "reddedildi" olarak kaydedilir.
+
+Kurallar:
+
+- Onaylanmamış düzeltme bakiyeyi etkilemez. Müşteri onayı olmadan hiçbir şekilde (platform yöneticisi dahil) düzeltme yapılamaz.
+- Müşteri düzeltmeyi reddederse platform araya girmez; konu müşteri ile restoran arasında çözülür. Ödül kullanımı personel tarafından başlatıldığı için restoran, anlaşmazlık çözülene kadar müşteriye ödül kullandırmamayı tercih edebilir.
+- Onay isteğinin süre sınırı yoktur.
+- Onay anında bakiye tekrar kontrol edilir; müşteri bakiyesi düzeltme sonucunda negatif olamaz.
+- Orijinal işlem, düzeltme isteği ve sonucu (onay/ret) işlem geçmişinde birlikte görünür.
+
+### 7.8. Değerlendirmeler
+
+Şube panelinde bir "Değerlendirmeler" bölümü bulunmalıdır. Bu bölümde:
+
+- Şubenin ortalama puanı.
+- Toplam değerlendirme sayısı.
+- Müşteri yorumları ve tarihleri.
+- Puan dağılımı.
+- Yorumlara cevap verme alanı.
+
+bulunmalıdır.
+
+Şube yöneticisi yorumlara cevap verebilir; ancak kendi puanını veya müşteri yorumlarını değiştirme ya da silme yetkisi bulunmamalıdır.
+
+### 7.9. Çalışan Yönetimi
+
+Şube yöneticisi çalışanlarını sisteme ekleyebilir. Her çalışan tek bir şubeye bağlıdır.
+
+Çalışanlara aşağıdaki yetkiler verilebilmelidir:
+
+- Müşteri numarası girip işlem yapma.
+- Ödül kazandırma.
+- Ödül kullandırma (onay isteği gönderme).
+- Müşteri görüntüleme.
+- Rapor görüntüleme.
+
+Düzeltme kaydı oluşturma yetkisi şube yöneticisine aittir.
+
+Her çalışan yalnızca kendisine tanımlanan yetkiler kapsamında işlem yapabilmelidir.
+
+## 8. ABONELİK PAKETLERİ VE AYLIK MÜŞTERİ SAYACI
+
+Platformda yalnızca iki abonelik paketi bulunacaktır.
+
+**Paketler arasındaki tek fark aylık tekil müşteri sayısıdır.**
+
+**Abonelik şube bazındadır.** Her şube için ayrı paket alınır. 10 şubesi olan bir işletme, bütün şubeleri için Profesyonel paket istiyorsa 10 ayrı Profesyonel paket almalıdır.
+
+### 8.1. Ücretsiz Paket
+
+- Aylık tekil müşteri sınırı vardır (varsayılan 100). Bu sınır platform yöneticisi tarafından ayarlardan değiştirilebilir ve tüm şubelere aynen uygulanır.
+- Bütün yönetim özellikleri kısıtlamasız kullanılabilir (menü, şube, ödül oranı, ödül kazandırma/kullandırma, kampanya, çalışan, raporlama, müşteri yönetimi).
+
+Ücretsiz pakette herhangi bir özellik kısıtlaması bulunmayacaktır. Tek sınır aylık tekil müşteri sayısıdır.
+
+### 8.2. Profesyonel Paket
+
+- Aylık müşteri sınırı yoktur.
+- Ücretsiz paketteki bütün özellikler aynen kullanılabilir.
+- Aylık ve yıllık abonelik seçenekleri vardır.
+
+Profesyonel paket, özellik açmak için değil, aylık müşteri sınırını kaldırmak için satın alınır.
+
+### 8.3. Ödeme ve Aktivasyon
+
+- Ödemeyi şube yöneticisi yapar.
+- Ödeme sayfasında havale/EFT bilgileri yer alır. Şube yöneticisi havaleyi yaptıktan sonra panelden ödeme bildirimini gönderir.
+- Platform yöneticisi havaleyi kontrol eder ve şubenin Profesyonel paketini elle aktif eder.
+- Abonelik süresi (aylık veya yıllık) dolduğunda ve yenilenmediğinde şube otomatik olarak Ücretsiz pakete düşer.
+
+### 8.4. Aylık Müşteri Sayacı Nasıl Çalışacak?
+
+Her şube için ayrı bir aylık müşteri sayacı bulunmalıdır.
+
+Sayaç her ayın 1'inde saat 00.00'da sıfırlanmalıdır.
+
+Sayaç işlem adedini değil, ilgili ay içerisinde o şubede ödül kazanma işlemi yapan farklı müşteri sayısını ölçmelidir.
+
+Kurallar:
+
+- Bir müşteri aynı ay içerisinde 1 kez işlem yaparsa sayaç 1 artar.
+- Aynı müşteri aynı ay içerisinde 10 veya 100 kez işlem yaparsa sayaç yine yalnızca 1 artar.
+- Farklı bir müşteri ilk kez işlem yaptığında sayaç 1 artar.
+- Müşterinin eski veya yeni olması önemli değildir.
+- Aynı markanın farklı şubelerinde işlem yapan aynı müşteri, her şubenin sayacında ayrı ayrı sayılır.
+- Bir sonraki ay aynı müşteri yeniden işlem yaparsa yeni ayın sayacına 1 müşteri olarak dahil edilmelidir.
+
+**Önemli:** Sayım ilgili ay içerisindeki ilk başarılı ödül kazandırma işlemiyle yapılmalıdır. Ödül kullanım işlemleri sayacı etkilemez.
+
+### 8.5. Limite Yaklaşıldığında ve Ulaşıldığında
+
+Uyarı eşikleri sabit sayı değil, limitin yüzdesi olarak çalışır:
+
+- Limitin %80'ine ulaşıldığında: uyarı gösterilir.
+- Limitin %90'ına ulaşıldığında: limitin yaklaştığı bildirilir.
+- Limitin %100'üne ulaşıldığında: limit dolmuştur ve Profesyonel pakete geçiş ekranı gösterilir.
+
+Örnek (limit 100 iken): 80. farklı müşteride uyarı, 90. farklı müşteride yaklaşma bildirimi, 100. farklı müşteride limit doldu ekranı.
+
+Şube yöneticisine limitin dolduğu açıkça bildirilmelidir. Abonelik yükseltme ekranında Profesyonel paketin avantajı, sınırsız aylık müşteri kabul edebilmek olarak anlatılmalıdır.
+
+Bu sınır yeni müşterilerle sınırlı değildir. Eski veya yeni bütün müşteriler o ayın sayacına dahildir.
+
+### 8.6. Sayaç Dolduğunda Uygulanacak İş Kuralı
+
+Limit dolduğunda şube, o ay henüz sayılmamış bir müşteriye **ödül kazandıramaz**. O ay zaten sayılmış müşterilere ödül kazandırmaya devam edebilir.
+
+**Ödül kullandırma limitten bağımsızdır.** Limit dolmuş olsa da müşteri biriktirdiği ödülü kullanabilir.
+
+Bu durum müşterinin restorandan hizmet almasını engellemez. Kısıtlama yalnızca yeni ödül kazandırma işlemiyle ilgilidir.
+
+Şube Profesyonel pakete geçtiğinde sınır kalkar.
+
+### 8.7. Profesyonel Paketten Ücretsiz Pakete Geçiş
+
+Şube istediği zaman (veya abonelik süresi dolduğunda otomatik olarak) Ücretsiz pakete geçebilir.
+
+- Geçmiş müşteri kayıtları korunur.
+- Müşterilerin bakiyeleri korunur.
+- Geçmiş işlemler korunur.
+- Geçmiş aylardaki müşteri sayısı dikkate alınmaz; içinde bulunulan ayın sayacı ve ücretsiz paket limiti uygulanır.
+
+Geçmiş müşteri sayısı nedeniyle Ücretsiz pakete geçiş engellenmemelidir.
+
+### 8.8. Aylık Sayaçla İlgili Ek Kurallar
+
+- Her şubenin sayacı bağımsız olmalıdır.
+- Sayaç geçmiş ayların raporlarını korumalıdır.
+- Ay değişiminde yalnızca aktif aylık sayım dönemi yenilenmelidir.
+- Aynı müşterinin aynı ay içerisinde tekrar işlem yapması sayacı artırmamalıdır.
+- Eş zamanlı işlemlerde aynı müşterinin iki kez sayılması önlenmelidir.
+- Paket değişikliği geçmiş müşteri ve işlem kayıtlarını etkilememelidir.
+- Profesyonel pakette müşteri sayısı sınırsız olmalıdır.
+
+## 9. PLATFORM YÖNETİM PANELİ
+
+Platform yöneticisi tüm sistemi kontrol edebilmelidir.
+
+### 9.1. Genel İstatistikler
+
+- Toplam işletme ve şube sayısı.
+- Aktif şube sayısı.
+- Toplam müşteri sayısı.
+- Aktif müşteri sayısı.
+- Toplam sadakat işlemi.
+- Toplam kazanılan ödül.
+- Toplam kullanılan ödül.
+- Ücretsiz paket kullanan şubeler.
+- Profesyonel paket kullanan şubeler.
+- Aylık abonelik ve sponsorluk gelirleri.
+
+### 9.2. İşletme ve Şube Yönetimi
+
+- İşletmeleri ve şubeleri listeleme.
+- Detayları görüntüleme.
+- İşletme başvurularını onaylama veya reddetme.
+- İşletme/şubeleri aktif veya pasif yapma.
+- Şubelerin aboneliklerini görüntüleme.
+- Şubelerin aylık müşteri sayılarını inceleme.
+
+### 9.3. Paket Yönetimi
+
+- Ücretsiz ve Profesyonel paketleri yönetme.
+- Profesyonel paketin aylık ve yıllık fiyatını belirleme.
+- Paket açıklamalarını düzenleme.
+- Ücretsiz paket aylık müşteri limitini ayarlama.
+- Bekleyen havale bildirimlerini görüntüleme ve şube bazında paketi elle aktif etme.
+- Abonelik durumlarını, başlangıç ve bitiş tarihlerini takip etme.
+- Havale bilgilerini (banka, IBAN, alıcı) düzenleme.
+
+### 9.4. Sponsorlu Restoranlar
+
+Platform gelir modellerinden biri sponsorlu restoran listelemeleridir.
+
+- Sponsorluk şube bazındadır ve süresi 1 aydır: ayın 1'inde başlar, sonraki ayın 1'inde biter.
+- Sponsorluk ödemesi havale ile yapılır ve platform yöneticisi tarafından elle onaylanır.
+- Sponsorlu restoran sayısında sınır yoktur.
+- Sponsorlu restoranlar normal listelemelerden görsel olarak ayrılmalı ve sponsorlu oldukları açıkça belirtilmelidir.
+
+## 10. RAPORLAMA VE ANALİZ
+
+Şube yöneticileri şubeleri için aşağıdaki raporları inceleyebilmelidir; işletme yöneticisi ise aynı raporları şube bazında ve işletme toplamı olarak görebilmelidir:
+
+- Günlük müşteri sayısı.
+- Aylık tekil müşteri sayısı.
+- Toplam müşteri sayısı.
+- Yeni müşteriler.
+- Tekrar gelen müşteriler.
+- Kazandırılan toplam ödül.
+- Kullandırılan toplam ödül.
+- Kullanılabilir ödül bakiyesi.
+- Şube bazında müşteri ve işlem performansı (işletme yöneticisi için).
+- Kampanya performansı.
+- En aktif müşteriler.
+- Günlük, haftalık ve aylık işlem istatistikleri.
+
+Platform yöneticisi bütün işletme ve şubelerin performansını bir arada inceleyebilmelidir.
+
+## 11. BİLDİRİMLER VE KAMPANYALAR
+
+### 11.1. Müşteri Mobil Uygulaması
+
+Uygulamada iki ayrı buton bulunur:
+
+**Bildirimler**
+
+- Yalnızca müşteriden onay bekleyen istekler burada görünür: ödül kullanım istekleri ve düzeltme istekleri.
+- Uygulama açıldığında ve müşteri Bildirimler sayfasının en üstündeki "Yenile" butonuna bastığında uygulama sunucuya onay bekleyen işlem olup olmadığını sorar; varsa listelenir ve müşteri onaylar veya reddeder. Bildirimler butonuna basmak sunucuya sorgu göndermez.
+- Bu bölüm için anlık bildirim (push) kullanılmaz.
+
+**Kampanyalar**
+
+- Müşterinin kayıt sırasında seçtiği ilçedeki şubelerin aktif kampanyaları listelenir.
+- Liste, Bildirimler'de olduğu gibi yalnızca uygulama açıldığında ve Kampanyalar sayfasının en üstündeki "Yenile" butonuna basıldığında sunucudan çekilir.
+- Müşteri ilçesini profil bölümünden güncelleyebilir.
+
+Örnek: İstanbul'un Fatih ilçesinde oturan bir müşteri, Fatih ilçesindeki şubelerin kampanyalarını Kampanyalar alanında görür ve dilediği restorana gider.
+
+### 11.2. Yönetim Paneli Bildirimleri
+
+Şube yöneticilerine panel içinde gösterilecek bildirimler:
+
+- Aylık müşteri sayısı limitin %80'ine ulaştı.
+- Aylık müşteri sayısı limitin %90'ına ulaştı.
+- Ücretsiz paket müşteri sınırı doldu, Profesyonel pakete geçiş gerekli.
+- Abonelik süresi sona eriyor / sona erdi.
+- Havale bildirimi onaylandı, paket aktif edildi.
+- Ödül kullanım isteği müşteri tarafından onaylandı / reddedildi.
+
+## 12. ÖDÜL SİSTEMİNİN İŞ KURALLARI
+
+Ödül sistemi tutarlı ve şeffaf çalışmalıdır.
+
+- Ödül yalnızca müşterinin fiilen ödediği harcama tutarı üzerinden, ödeme sonrasında hesaplanmalıdır.
+- Ödül oranı ilgili şubenin işlem anındaki oranına göre uygulanmalı ve bu oran işlem kaydında saklanmalıdır.
+- Kazanılan ödül yalnızca ilgili şubenin kumbarasına eklenmelidir.
+- Ödül kullanımı müşterinin mobil uygulamadan onayı ile mevcut bakiyesinden düşülmelidir.
+- Kullanılan ödül tutarı yeni ödül kazancı oluşturmamalıdır.
+- İptal veya iade akışı yoktur; hatalı işlemler şube yöneticisinin oluşturduğu ve müşterinin onayladığı düzeltme kaydıyla (ters hareket) düzeltilir, işlemler silinmez.
+- Personel işlemi tamamlamadan önce özet ekranı görmelidir.
+- Müşteri bakiyesi negatif olamaz.
+- Tutarlarda kuruşlar korunur, yuvarlama yapılmaz.
+- Ödüllerin son kullanma süresi ve kullanım sınırı yoktur.
+- Her ödül kazanma, kullanma ve düzeltme işlemi geçmişte izlenebilir olmalı; işlemi yapan kullanıcı kaydedilmelidir.
+- İşlemler yalnızca yetkilendirilmiş kullanıcılar tarafından gerçekleştirilmelidir.
+
+Örnek:
+
+Müşterinin hesabı 1.000,00 TL olsun ve müşteri 300,00 TL ödül kullansın (mobil uygulamadan onaylayarak).
+
+Müşterinin ödeyeceği tutar 700,00 TL olur. Yeni ödül yalnızca ödenen 700,00 TL üzerinden hesaplanır.
+
+%10 ödül oranında müşteri 70,00 TL yeni ödül kazanır.
+
+## 13. TASARIM VE KULLANICI DENEYİMİ
+
+Uygulamanın tasarımı modern, sade, hızlı ve kolay kullanılabilir olmalıdır.
+
+- Mobil uygulama öncelikli bir deneyim sunmalıdır.
+- Restoranların ödül oranları kolay fark edilmelidir.
+- Kumbara bakiyeleri anlaşılır biçimde gösterilmelidir.
+- Yönetim panelleri teknik bilgisi olmayan işletme sahiplerinin de rahatlıkla kullanabileceği şekilde tasarlanmalıdır.
+- Personelin işlem ekranı (müşteri numarası gir → özet → onay) hızlı ve hataya kapalı olmalıdır.
+- Menü yönetimi kolay ve hızlı olmalıdır.
+- Web sitesi mobil uyumlu ve arama motorlarına uygun olmalıdır.
+- Sponsorlu içerikler açıkça işaretlenmelidir.
+- Puanlar her zaman sayısal gösterilmeli, yıldız simgeleri kullanılmamalıdır.
+- Kullanıcıların kişisel ve finansal nitelikteki işlem bilgileri güvenli şekilde korunmalıdır.
+- Arayüz dili Türkçe, para birimi TL'dir.
+
+## 14. GELİR MODELİ
+
+Platformun temel gelir kaynağı şube bazında satılan Profesyonel aboneliklerdir (aylık veya yıllık).
+
+Ücretsiz paket restoranların sisteme katılmasını ve müşteri kazanmaya başlamasını sağlar.
+
+Şube aylık müşteri limitine ulaştığında Profesyonel pakete geçerek müşteri sınırını kaldırabilir.
+
+Ek gelir kaynakları:
+
+- Sponsorlu restoran listelemeleri (aylık).
+- Öne çıkarılmış restoran profilleri.
+- İlerleyen dönemlerde sunulabilecek reklam ve tanıtım hizmetleri.
+
+İlk sürümde tüm ödemeler havale/EFT ile alınır ve platform yöneticisi tarafından elle onaylanır.
+
+## 15. GENEL ÜRÜN PRENSİPLERİ
+
+1. Müşteri açısından bütün şubelerin kumbaraları tek mobil uygulamada bulunmalıdır.
+2. Her şubenin ödül bakiyesi diğer şubelerden (aynı markaya ait olsalar bile) tamamen bağımsız olmalıdır.
+3. İşletmeler menülerini ve fiyatlarını; şubeler ödül oranlarını, kampanyalarını ve bilgilerini yönetebilmelidir.
+4. Müşteriler restoranları, ödül oranlarını ve puanları kolayca karşılaştırabilmelidir.
+5. İlk sürümde online sipariş ve ödeme bulunmamalıdır.
+6. Ücretsiz ve Profesyonel paketlerde bütün özellikler aynı olmalıdır.
+7. Paketler arasındaki tek fark aylık tekil müşteri sınırıdır.
+8. Aynı müşteri bir ay içerisinde bir şubede kaç işlem yaparsa yapsın o şubenin sayacında yalnızca bir kez sayılmalıdır.
+9. Aylık sayaç her ayın 1'inde sıfırlanmalıdır.
+10. Ücretli paketten ücretsiz pakete geçişte geçmiş müşteri sayısı bir engel oluşturmamalıdır.
+11. Müşteri bakiyeleri ve işlem geçmişleri paket değişikliklerinden etkilenmemelidir.
+12. Ödül kullanımı ve düzeltme kayıtları her zaman müşteri onayı gerektirir; ödül kullanımı aylık limitten etkilenmez.
+13. Platformun temel amacı restoranların müşteri sadakatini artırmak ve müşterilerin farklı restoranlardaki ödüllerini tek bir uygulamada yönetmesini sağlamaktır.
+
+## 16. RESTORAN PUANLAMA VE YORUM SİSTEMİ
+
+Müşteriler şubelere 10 üzerinden puan verebilmeli ve yorum yazabilmelidir. Puan ve yorumlar **şube bazındadır**; aynı markanın şubelerinin puanları birbirinden ayrıdır.
+
+Bu özellik hem web sitesinde (okuma) hem de mobil uygulamada (okuma ve yazma) bulunmalıdır.
+
+### 16.1. Puanlama Sistemi
+
+- Müşteri 1 ile 10 arasında **tam sayı** puan verir.
+- Puanlar sayısal olarak gösterilmelidir; yıldız simgeleri kesinlikle kullanılmamalıdır.
+- Şubenin genel puanı, geçerli değerlendirmelerin aritmetik ortalamasıdır ve bir ondalık basamakla gösterilir.
+- Puanın yanında toplam değerlendirme sayısı gösterilmelidir.
+
+Örnek: **8.7 / 10 — 245 değerlendirme**
+
+Hiç değerlendirmesi bulunmayan şubelerde puan yerine "Henüz değerlendirme yok" ifadesi gösterilmelidir.
+
+### 16.2. Yorum Yazma
+
+Yorumlarda:
+
+- Müşterinin verdiği puan.
+- Yazılı yorum.
+- Yorum tarihi.
+- Müşterinin görünen adı (gizlilik tercihine uygun kullanıcı bilgisi).
+
+gösterilmelidir.
+
+- Yorumlar şubenin herkese açık detay sayfasında yayınlanmalıdır.
+- Müşteriler kendi yorumlarını görüntüleyebilmeli ve düzenleyebilmelidir.
+- Uygunsuz, hakaret içeren, reklam amaçlı veya platform kurallarına aykırı yorumlar raporlanabilmelidir.
+- Platform yöneticisi şikâyet edilen yorumları inceleyebilmeli ve gerektiğinde kaldırabilmelidir.
+- Şube yöneticisi yorumlara cevap verebilir; ancak yorumları silemez veya puanları değiştiremez.
+
+### 16.3. Gerçek Müşteri Değerlendirmesi
+
+- Müşteri yalnızca **ödül kazandığı** (yani o şubede yemek yediği) şubeyi değerlendirebilir. Ödül almadan yorum veya puan verilemez.
+- Ödül oranı %0 olan şubelerde ödül kazanılamadığı için değerlendirme de yapılamaz.
+- Her müşterinin aynı şube için tek bir geçerli değerlendirmesi olur; müşteri daha sonra puanını ve yorumunu güncelleyebilir.
+
+### 16.4. Detay Sayfasında Değerlendirmeler
+
+Şube detay sayfasında:
+
+- Ortalama puan.
+- Toplam değerlendirme sayısı.
+- Müşteri yorumları ve tarihleri.
+- Şubenin yorumlara verdiği cevaplar.
+
+gösterilmelidir. Yorumlar en yeni, en eski ve puana göre sıralanabilmelidir.
+
+Listeleme ekranlarında da ortalama puan gösterilmelidir.
+
+Örnek restoran kartı:
+
+Restoran A – Kadıköy
+8.7 / 10 — 245 değerlendirme
+%10 ödül kazan
+
+Restoran B
+9.2 / 10 — 128 değerlendirme
+%8 ödül kazan
+
+### 16.5. Sıralama ve Filtreleme
+
+Web sitesi ve mobil uygulamada şubeler şu seçeneklerle sıralanabilmelidir:
+
+- En yüksek puanlı (en az 10 değerlendirme şartıyla).
+- En çok değerlendirilen.
+- En yüksek ödül oranı.
+- En popüler (tekil işlem sayısına göre).
+
+Minimum puana göre filtreleme yapılabilmelidir.
+
+Puanı bulunmayan restoranlar, yüksek puanlı restoranlar arasında değerlendirme sayısı varmış gibi gösterilmemelidir.
+
+## 17. TEKNİK ALTYAPI
+
+- **Web sitesi, yönetim panelleri ve API:** PHP – Laravel.
+- **Veritabanı:** PostgreSQL.
+- **Barındırma:** Shared hosting (PostgreSQL destekli).
+- **Mobil uygulama:** React Native (Expo), iOS ve Android.
+- **Anlık bildirim:** Kullanılmaz. Mobil uygulama veriyi yalnızca açılışta ve Yenile butonlarıyla sunucudan çeker; periyodik istek yoktur.
+- **Ödeme:** Havale/EFT, platform yöneticisi tarafından elle onay.
+
+Bu gereksinimler doğrultusunda tutarlı ve ileride yeni özelliklerle genişletilebilecek bir restoran sadakat platformu geliştirilmelidir.

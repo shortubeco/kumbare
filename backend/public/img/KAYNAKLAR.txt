@@ -1,0 +1,24 @@
+Bu klasördeki fotoğraflar Unsplash'ten alınmıştır ve Unsplash Lisansı ile kullanılır
+(ticari kullanım serbest, atıf zorunlu değil): https://unsplash.com/license
+
+hero-sofra          https://unsplash.com/photos/42RAqhGMZW8
+odeme               images.unsplash.com/photo-1777680051111-2967fceff3eb
+isletme-mutfak      images.unsplash.com/photo-1622021142947-da7dedc7c39a
+isletme-salon       images.unsplash.com/photo-1517248135467-4c7edcad34c4
+sofra-arkadaslar    images.unsplash.com/photo-1601118964938-228a89955311
+mutfak/kebap        images.unsplash.com/photo-1603360946369-dc9bb6258143
+mutfak/pide-lahmacun images.unsplash.com/photo-1777315387772-bde80ddce03b
+mutfak/ev-yemekleri images.unsplash.com/photo-1647772809798-f34d785c981c
+mutfak/balik        images.unsplash.com/photo-1519708227418-c8fd9a32b7a2
+mutfak/burger       images.unsplash.com/photo-1568901346375-23c9450c58cd
+mutfak/pizza        images.unsplash.com/photo-1513104890138-7c749659a591
+mutfak/kahvalti     images.unsplash.com/photo-1633040243823-6bf8d4edb0ec
+mutfak/doner        images.unsplash.com/photo-1530469912745-a215c6b256ea
+mutfak/tatli-pastane images.unsplash.com/photo-1761828122856-8703baac8e86
+mutfak/kafe         images.unsplash.com/photo-1511920170033-f8396924c348
+mutfak/manti        images.unsplash.com/photo-1777891258085-98042f654b25
+mutfak/kofte        images.unsplash.com/photo-1529042410759-befb1204b468
+mutfak/corba        images.unsplash.com/photo-1605909388460-74ec8b204127
+mutfak/vegan        images.unsplash.com/photo-1512621776951-a57141f2eefd
+mutfak/uzakdogu     images.unsplash.com/photo-1585032226651-759b368d7246
+mutfak/steakhouse   images.unsplash.com/photo-1588168333986-5078d3ae3976

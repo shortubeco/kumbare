@@ -1,0 +1,14 @@
+# Kumbare – depoya girmeyecek dosyalar
+
+# Yükleme paketleri: kumbare-backend.zip içinde .env (veritabanı şifresi, APP_KEY) var; diğerleri kodun kopyası
+deploy/*.zip
+
+# Kullanıcıların yüklediği fotoğraflar (sunucuya özgü)
+backend/public/uploads/
+
+# İşletim sistemi / editör
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
