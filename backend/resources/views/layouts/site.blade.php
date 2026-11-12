@@ -43,7 +43,7 @@
             <a href="{{ route('web.branches') }}" @if (request()->routeIs('web.branches', 'web.city', 'web.district', 'web.category', 'web.branch')) aria-current="page" @endif>Restoranlar</a>
             <a href="{{ route('web.home') }}#nasil-calisir">Nasıl çalışır</a>
             <a href="{{ route('web.business') }}" @if (request()->routeIs('web.business*')) aria-current="page" @endif>İşletmeler için</a>
-            <a class="nav-cta" href="{{ route('web.home') }}#uygulama">Uygulamayı indir</a>
+            <a class="nav-cta" href="{{ route('web.app') }}" @if (request()->routeIs('web.app')) aria-current="page" @endif>Uygulamayı indir</a>
         </nav>
     </div>
 </header>
@@ -80,6 +80,7 @@
                 <h2>Kumbare</h2>
                 <ul>
                     <li><a href="{{ route('web.business') }}">Restoranınızı ekleyin</a></li>
+                    <li><a href="{{ route('web.app') }}">Mobil uygulama</a></li>
                     <li><a href="{{ route('web.kvkk') }}">KVKK aydınlatma metni</a></li>
                 </ul>
             </div>

@@ -1,0 +1,17 @@
+{
+  "name": "Kumbare",
+  "short_name": "Kumbare",
+  "description": "Restoranlardaki ödül kumbaraların, kampanyalar ve onay istekleri.",
+  "lang": "tr",
+  "start_url": "/uygulama/ana-sayfa",
+  "scope": "/uygulama/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f7f4",
+  "theme_color": "#0e3b3a",
+  "icons": [
+    { "src": "/uygulama/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/uygulama/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/uygulama/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

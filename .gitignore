@@ -5,6 +5,9 @@ deploy/*.zip
 
 # Kullanıcıların yüklediği fotoğraflar (sunucuya özgü)
 backend/public/uploads/
+# Web uygulaması derlemesi (mobile/scripts/build-web.mjs üretir)
+backend/public/uygulama/
+mobile/dist-web/
 
 # İşletim sistemi / editör
 .DS_Store

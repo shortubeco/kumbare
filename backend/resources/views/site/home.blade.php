@@ -327,10 +327,10 @@
             <div class="bant-uygulama bant-foto bant-foto-alt" id="uygulama">
                 <div>
                     <h2>Kumbaran cebinde</h2>
-                    <p>Tüm restoranlardaki ödüllerini, kampanyaları ve onay isteklerini Kumbare uygulamasından takip et.</p>
+                    <p>Tüm restoranlardaki ödüllerini, kampanyaları ve onay isteklerini Kumbare uygulamasından takip et. Mağazadan indirmen gerekmez.</p>
                     <div class="actions">
-                        <span class="store-badge"><small>Yakında</small><b>App Store</b></span>
-                        <span class="store-badge"><small>Yakında</small><b>Google Play</b></span>
+                        <a class="store-badge" href="{{ route('web.app') }}#iphone"><small>Hemen kullan</small><b>iPhone</b></a>
+                        <a class="store-badge" href="{{ route('web.app') }}#android"><small>Hemen kullan</small><b>Android</b></a>
                     </div>
                 </div>
                 <img src="/img/sofra-arkadaslar.webp" width="900" height="700" alt="Mumlarla kurulmuş bir akşam yemeği sofrasında kadeh kaldıran arkadaşlar" loading="lazy" decoding="async">

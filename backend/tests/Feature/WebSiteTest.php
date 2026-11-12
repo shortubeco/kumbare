@@ -162,4 +162,21 @@ class WebSiteTest extends TestCase
         $this->assertSame("Tokat'ta", TurkishText::locative('Tokat'));
         $this->assertSame("İzmir'deki", TurkishText::locativeAdjective('İzmir'));
     }
+
+    public function test_mobile_app_page_and_pwa_fallback(): void
+    {
+        $this->get('/mobil-uygulama')
+            ->assertOk()
+            ->assertSee('Kumbare uygulaması')
+            ->assertSee('/uygulama/ana-sayfa', false);
+
+        // Web uygulaması derlemesi varsa alt adresler giriş dosyasına düşer; yoksa 404.
+        $built = is_file(public_path('uygulama/app.html'));
+        $response = $this->get('/uygulama/kesfet');
+        if ($built) {
+            $response->assertOk()->assertHeader('Content-Type', 'text/html; charset=UTF-8');
+        } else {
+            $response->assertNotFound();
+        }
+    }
 }

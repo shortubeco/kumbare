@@ -193,6 +193,7 @@ Bu paketlerde yalnızca değişen dosyalar, `kumbare-backend/...` klasör yapıs
 | guncelleme-13-islem-ekrani | Şube: İşlem ekranı | route + view |
 | guncelleme-14-sube-genel-bakis | Şube: Genel bakış | route + view |
 | guncelleme-15-musteriler-duzeltmeler | Şube: Müşteriler, Düzeltmeler | route + view |
+| guncelleme-21-mobil-uygulama | iPhone/Android web uygulaması `/uygulama` (PWA) + site sayfası `/mobil-uygulama`; ana sayfa ve menüde bağlantılar | route + view |
 | guncelleme-20-menu-kategori-silme | Menü: ürünü silinmiş kategori artık silinebiliyor | — |
 | guncelleme-19-isletme-paneli | İşletme yöneticisi paneli (genel bakış, şubeler, yöneticiler, menü, raporlar, abonelikler, bilgiler) | route + view |
 | guncelleme-18-sube-raporlari | Şube: Raporlar (+ 17'deki 403 sayfası) | route + view |
@@ -217,3 +218,12 @@ Havale dekontları sunucuda `kumbare-backend/storage/app/private/dekontlar/` alt
 - `.env` dosyası veritabanı şifresini ve uygulama anahtarını (`APP_KEY`) içerir. Kimseyle paylaşmayın.
 - `APP_KEY` değişirse oturumlar ve şifreli veriler geçersiz olur. Bir kez kurduktan sonra değiştirmeyin.
 - `deploy/kumbare-backend.zip` de bu anahtarı içerir. Kurulumdan sonra bilgisayarınızda güvenli tutun veya silin.
+
+
+## Web uygulaması (PWA) güncelleme
+
+Müşteri uygulamasının iPhone/web sürümü `kumbare-backend/public/uygulama` klasöründedir (derleme çıktısı, depoya girmez).
+
+1. Bilgisayarda `mobile` klasöründe `node scripts/build-web.mjs` çalıştırılır: canlı API adresiyle derler ve `backend/public/uygulama` klasörüne kopyalar (giriş dosyası `app.html`; klasördeki `.htaccess` yalnızca `DirectoryIndex app.html` içerir).
+2. `public/uygulama` klasörünün tamamı `kumbare-backend/public/uygulama` yoluyla ZIP'lenir; File Manager'da ev klasörüne Extract edilir. Eski karma adlı JS dosyaları sunucuda kalabilir, zararsızdır.
+3. Yalnızca uygulama değiştiyse cron gerekmez. `/uygulama/...` alt adreslerini `Web\AppController` karşılar (`app.html` döner).

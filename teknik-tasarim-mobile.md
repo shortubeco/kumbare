@@ -10,7 +10,7 @@
 | Konu | Seçim | Not |
 |---|---|---|
 | Çatı | React Native + Expo | iOS ve Android tek kod tabanı |
-| Derleme | Geliştirmede Expo Go, mağaza için EAS Build | Özel native modül olmadığı için geliştirme sırasında Expo Go yeterlidir |
+| Derleme | **Android: imzalı APK** (EAS Build veya yerel); **iPhone: PWA** (aynı koddan web dışa aktarımı) | **Karar (12 Kasım 2026):** mağaza yok, Expo Go yok. Dosyalar sitede "Android" ve "iOS" bağlantıları altında. Apple Türkiye'de siteden kurulum izni vermediği için iPhone'da "Ana ekrana ekle" ile web uygulaması. App Store/TestFlight sonraya bırakıldı |
 | Navigasyon | Expo Router | Dosya tabanlı rotalar |
 | Sunucu verisi | TanStack Query | Önbellek, yenileme, sayfalama |
 | Token saklama | `expo-secure-store` | |
@@ -189,3 +189,21 @@ Uygulama push bildirim ve periyodik arka plan isteği kullanmaz. Sunucudan veri 
 - Uygulama kimliği (bundle id / package name) örneği: `com.kumbare.app`.
 - Ortamlar: `development` (yerel API), `preview` (test sunucusu), `production`. API adresi derleme profiline göre belirlenir.
 - Mağaza için gereken içerikler: gizlilik politikası URL'si, KVKK metni, hesap silme bağlantısı (her iki mağaza da zorunlu tutuyor), ekran görüntüleri.
+
+
+## 7. Uygulama durumu (13 Kasım 2026)
+
+Dağıtım kararı (bkz. iş planı + CLAUDE.md): mağaza yok. **iPhone:** web uygulaması (PWA) — `https://kumbare.trthabercanli.com/uygulama/ana-sayfa`, Safari'de "Ana Ekrana Ekle". **Android:** siteden indirilen imzalı APK (6. adım, henüz yapılmadı); o zamana kadar Chrome'dan ana ekrana ekleme. Kurulum anlatımı sitede `/mobil-uygulama`.
+
+| Adım | İçerik | Durum |
+|---|---|---|
+| 1 | Giriş, kayıt (il/ilçe, gün/ay/yıl doğum tarihi, KVKK onayı), şifre sıfırlama isteği, "Hoş geldiniz" (müşteri numarası), 4 sekme | Yerelde denendi |
+| 2 | Kumbaram (toplam + şube kumbaraları), kumbara ayrıntısı + sayfalı işlem geçmişi, Bildirimler (onayla/reddet, Yenile), zilde rozet, ana sayfada uyarı | Yerelde uçtan uca denendi (kasa API'si → uygulamada onay/ret, yetersiz bakiye) |
+| 3 | Ana sayfa blokları, Keşfet (arama, il/ilçe, mutfak, sıralama, kampanyalı, ödül veren), şube sayfası (Bilgiler / Menü / Değerlendirmeler, favori, kumbaram, kampanyalar), Kampanyalar, Favorilerim, değerlendirme yazma ve şikâyet | Yerelde denendi |
+| 4 | Profil menüsü, bilgileri düzenleme (doğum tarihi ve müşteri no değişmez), şifre değiştirme, Değerlendirmelerim, hesap silme, KVKK metni, sürüm | Yerelde denendi |
+| 5 | PWA: `/uygulama` altında yayın, manifest + iPhone meta, simgeler, "Ana ekrana ekle" ipucu, site sayfası `/mobil-uygulama` | Paket 21 hazır, canlı test bekliyor |
+| 6 | Android APK + uygulama içi "yeni sürüm var" kontrolü + sitede indirme bağlantısı | Sırada |
+
+Uygulamada **olmayanlar / sonraya kalanlar:** konumla "yakınımdakiler" (şimdilik kayıtlı ilçe kullanılıyor; telefondan konum izni gerekir), push bildirim (iş planı gereği yok), service worker / çevrimdışı çalışma.
+
+Teknik notlar: Expo SDK 58, expo-router (`src/app`), React Query, TypeScript. Web derlemesi `experiments.baseUrl: /uygulama`, `web.output: single`; giriş dosyası sunucuda `app.html`, alt adresleri Laravel `Web\\AppController` karşılar. Ayrıntılar CLAUDE.md "Mobil uygulama" maddesinde.

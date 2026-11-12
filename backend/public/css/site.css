@@ -610,6 +610,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--murekkep); outli
 .bant-uygulama p { color: #cfe0db; }
 .bant .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
 .store-badge {
+    color: inherit;
+    text-decoration: none;
     display: inline-flex;
     flex-direction: column;
     padding: 8px 16px;
@@ -1102,3 +1104,15 @@ input:focus, select:focus, textarea:focus { border-color: var(--murekkep); outli
 .galeri a { flex: 0 0 auto; scroll-snap-align: start; }
 .galeri img { display: block; width: 240px; height: 180px; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--cizgi); }
 @media (max-width: 600px) { .galeri img { width: 200px; height: 150px; } }
+
+/* ------------------------------------------------------------- mobil uygulama sayfası */
+.uyg-head { max-width: 70ch; display: grid; gap: 12px; margin-bottom: 28px; }
+.uyg-head p { color: var(--gri); }
+.uyg-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.uyg-kart { background: #fff; border: 1px solid #dce3de; border-radius: var(--r-md, 12px); padding: clamp(18px, 3vw, 28px); display: grid; gap: 12px; align-content: start; }
+.uyg-kart h2 { font-size: var(--t-xl); }
+.uyg-adim { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.uyg-not { color: var(--gri); font-size: var(--t-sm); }
+.uyg-bilgisayar { margin-top: 24px; color: var(--gri); }
+@media (max-width: 800px) { .uyg-grid { grid-template-columns: 1fr; } }
+.store-badge:hover { border-color: var(--kumbara); }

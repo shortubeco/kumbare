@@ -27,6 +27,7 @@ use App\Http\Controllers\Panel\StaffController as PanelStaff;
 use App\Http\Controllers\Panel\CustomerController as PanelCustomers;
 use App\Http\Controllers\Panel\TransactionScreenController;
 use App\Http\Controllers\Panel\LoginController;
+use App\Http\Controllers\Web\AppController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\BranchListController;
 use App\Http\Controllers\Web\BusinessApplicationController;
@@ -67,6 +68,13 @@ $site = function () {
     Route::view('kvkk-aydinlatma-metni', 'site.kvkk', [
         'seo' => ['title' => 'KVKK Aydınlatma Metni | Kumbare', 'description' => 'Kumbare kişisel verilerin korunması aydınlatma metni.', 'canonical' => null, 'robots' => 'index,follow'],
     ])->name('web.kvkk');
+
+    Route::view('mobil-uygulama', 'site.app', [
+        'seo' => ['title' => 'Kumbare uygulaması | iPhone ve Android', 'description' => 'Kumbare uygulamasını iPhone ve Android telefonuna ekle; restoranlardaki ödüllerini ve kampanyaları takip et.', 'canonical' => null, 'robots' => 'index,follow'],
+    ])->name('web.app');
+
+    // Müşteri web uygulaması (PWA): dosya olmayan alt adresler index.html'e düşer.
+    Route::get('uygulama/{yol?}', [AppController::class, 'pwa'])->where('yol', '.*')->name('web.pwa');
 
     Route::get('sitemap.xml', [SeoController::class, 'sitemap'])->name('web.sitemap');
 
