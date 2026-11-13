@@ -54,6 +54,11 @@
                 </select>
                 <button class="btn btn-coin" type="submit">Restoran bul</button>
             </form>
+            <a class="hero-uye" href="{{ route('web.app') }}">
+                <span class="hero-uye-etiket">Müşteriler için ücretsiz</span>
+                <span>Üye ol, müşteri numaranı al; ödüllerini telefonundan takip et.</span>
+                <b>Üye ol <span aria-hidden="true">→</span></b>
+            </a>
             <dl class="hero-sayilar">
                 <div><dt>Restoran</dt><dd class="num">{{ Format::number($stats['branches']) }}</dd></div>
                 <div><dt>İl</dt><dd class="num">{{ $stats['cities'] }}</dd></div>
@@ -319,6 +324,7 @@
             <div class="bant-isletme bant-foto">
                 <img src="/img/isletme-mutfak.webp" width="900" height="700" alt="Restoran mutfağında sebze doğrayan bir aşçı" loading="lazy" decoding="async">
                 <div>
+                    <p class="bant-etiket">İşletmeler için</p>
                     <h2>Restoranınız var mı?</h2>
                     <p>Müşterilerinize harcamalarının bir kısmını ödül olarak geri verin; menünüz, kampanyalarınız ve yorumlarınız binlerce kişiye görünsün.</p>
                     <div class="actions"><a class="btn" href="{{ route('web.business') }}">Restoranınızı ekleyin</a></div>
@@ -326,11 +332,12 @@
             </div>
             <div class="bant-uygulama bant-foto bant-foto-alt" id="uygulama">
                 <div>
+                    <p class="bant-etiket">Müşteriler için</p>
                     <h2>Kumbaran cebinde</h2>
-                    <p>Tüm restoranlardaki ödüllerini, kampanyaları ve onay isteklerini Kumbare uygulamasından takip et. Mağazadan indirmen gerekmez.</p>
+                    <p>Ücretsiz üye ol; tüm restoranlardaki ödüllerini, kampanyaları ve onay isteklerini Kumbare uygulamasından takip et. Mağazadan indirmen gerekmez.</p>
                     <div class="actions">
-                        <a class="store-badge" href="{{ route('web.app') }}#iphone"><small>Hemen kullan</small><b>iPhone</b></a>
-                        <a class="store-badge" href="{{ route('web.app') }}#android"><small>Hemen kullan</small><b>Android</b></a>
+                        <a class="store-badge" href="{{ route('web.app') }}#iphone"><small>Ücretsiz üye ol</small><b>iPhone</b></a>
+                        <a class="store-badge" href="{{ route('web.app') }}#android"><small>Ücretsiz üye ol</small><b>Android</b></a>
                     </div>
                 </div>
                 <img src="/img/sofra-arkadaslar.webp" width="900" height="700" alt="Mumlarla kurulmuş bir akşam yemeği sofrasında kadeh kaldıran arkadaşlar" loading="lazy" decoding="async">

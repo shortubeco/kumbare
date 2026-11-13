@@ -179,4 +179,33 @@ class WebSiteTest extends TestCase
             $response->assertNotFound();
         }
     }
+
+    public function test_mobile_app_page_shows_apk_download_when_published(): void
+    {
+        $dir = public_path('indir');
+        $apk = $dir.'/kumbare.apk';
+        $json = $dir.'/android.json';
+        // APK depoda tutulmaz; yerelde varsa (gerçek yayın dosyası) test ona dokunmaz.
+        if (is_file($apk)) {
+            $this->markTestSkipped('public/indir içinde APK var.');
+        }
+        $original = is_file($json) ? file_get_contents($json) : null;
+
+        // android.json tek başına yetmez: APK yoksa kart "çok yakında" kalır.
+        $this->get('/mobil-uygulama')->assertOk()->assertSee('çok yakında')->assertDontSee('Android uygulamasını indir');
+
+        file_put_contents($apk, str_repeat('x', 1048576 * 2));
+        file_put_contents($json, json_encode(['version_code' => 3, 'version_name' => '1.0.2', 'url' => 'https://ornek.test/indir/kumbare.apk']));
+        try {
+            $this->get('/mobil-uygulama')
+                ->assertOk()
+                ->assertSee('Android uygulamasını indir')
+                ->assertSee('https://ornek.test/indir/kumbare.apk', false)
+                ->assertSee('Sürüm 1.0.2 · 2,0 MB')
+                ->assertDontSee('çok yakında');
+        } finally {
+            @unlink($apk);
+            $original === null ? @unlink($json) : file_put_contents($json, $original);
+        }
+    }
 }

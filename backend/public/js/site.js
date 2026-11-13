@@ -2,6 +2,63 @@
 (function () {
     'use strict';
 
+    // ---- Telefon menüsü: soldan kayan çekmece -----------------------------
+    // Kapanır: ✕, karartılmış alana dokunma, Esc, telefonun geri tuşu, menüden bir bağlantı.
+    var menuAc = document.querySelector('[data-menu-ac]');
+    var menu = menuAc && document.getElementById(menuAc.getAttribute('aria-controls'));
+    if (menu) {
+        var menuKapat = menu.querySelector('[data-menu-kapat]');
+        var perde = document.querySelector('[data-menu-perde]');
+        var gecmisteVar = false; // geri tuşu için geçmişe eklenen kayıt
+
+        var acikMi = function () { return document.body.classList.contains('menu-acik'); };
+        var gizle = function (odakDon) {
+            if (!acikMi()) return;
+            document.body.classList.remove('menu-acik');
+            menuAc.setAttribute('aria-expanded', 'false');
+            if (odakDon) menuAc.focus();
+        };
+        var kapat = function (odakDon) {
+            gizle(odakDon);
+            if (gecmisteVar) { gecmisteVar = false; history.back(); }
+        };
+        var ac = function () {
+            document.body.classList.add('menu-acik');
+            menuAc.setAttribute('aria-expanded', 'true');
+            try { history.pushState({ kumbareMenu: true }, ''); gecmisteVar = true; } catch (e) { gecmisteVar = false; }
+            setTimeout(function () { menuKapat.focus(); }, 50);
+        };
+
+        menuAc.addEventListener('click', function () { if (acikMi()) kapat(true); else ac(); });
+        menuKapat.addEventListener('click', function () { kapat(true); });
+        if (perde) perde.addEventListener('click', function () { kapat(true); });
+        window.addEventListener('popstate', function () { gecmisteVar = false; gizle(true); });
+
+        // Menüden bir bağlantıya dokunulunca yalnızca kapat; sayfa geçişi geçmişi zaten değiştirir.
+        menu.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                gizle(false);
+                if (gecmisteVar) { gecmisteVar = false; try { history.replaceState(null, ''); } catch (e) { /* yoksay */ } }
+            });
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (!acikMi()) return;
+            if (e.key === 'Escape') { e.preventDefault(); kapat(true); return; }
+            if (e.key !== 'Tab') return;
+            // Odak menünün içinde döner.
+            var odaklar = menu.querySelectorAll('a, button');
+            var ilk = odaklar[0], son = odaklar[odaklar.length - 1];
+            if (e.shiftKey && document.activeElement === ilk) { e.preventDefault(); son.focus(); }
+            else if (!e.shiftKey && document.activeElement === son) { e.preventDefault(); ilk.focus(); }
+        });
+
+        // Ekran genişleyip masaüstü menüsüne geçilirse çekmeceyi kapat.
+        var genis = window.matchMedia('(min-width: 721px)');
+        var genisDegisti = function () { if (genis.matches) kapat(false); };
+        if (genis.addEventListener) genis.addEventListener('change', genisDegisti); else if (genis.addListener) genis.addListener(genisDegisti);
+    }
+
     // ---- Adisyon: ödül hesaplayıcı ---------------------------------------
     var stage = document.querySelector('[data-adisyon]');
     if (stage) {

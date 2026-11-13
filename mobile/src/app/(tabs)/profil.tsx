@@ -7,6 +7,7 @@ import { type ComponentProps, useState } from 'react';
 import { Platform, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CustomerNumber } from '@/components/customer-number';
 import { Button, Card } from '@/components/ui';
+import { UpdateHint } from '@/components/update-hint';
 import { confirm } from '@/lib/confirm';
 import { date } from '@/lib/format';
 import { KVKK_URL } from '@/lib/site';
@@ -90,6 +91,7 @@ export default function ProfileScreen() {
         <MenuItem icon="trash-outline" label="Hesabımı sil" onPress={go('/hesabi-sil')} danger />
       </View>
 
+      <UpdateHint />
       <Button title="Çıkış yap" variant="danger" onPress={confirmSignOut} loading={busy} />
       <Text style={styles.version}>Kumbare sürüm {Constants.expoConfig?.version ?? '1.0.0'}</Text>
     </ScrollView>

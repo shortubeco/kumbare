@@ -20,5 +20,5 @@ cpSync('dist-web', target, { recursive: true });
 // Giriş dosyası app.html: klasörde index.html olursa PHP geliştirme sunucusu alt adresleri yanlış yorumluyor.
 // Alt adresleri (ör. /uygulama/kesfet) Laravel AppController karşılar; çıplak /uygulama için DirectoryIndex.
 renameSync(`${target}/index.html`, `${target}/app.html`);
-writeFileSync(`${target}/.htaccess`, 'DirectoryIndex app.html\n');
+writeFileSync(`${target}/.htaccess`, 'DirectoryIndex app.html\nAddType application/manifest+json .webmanifest\n');
 console.log(`\nKopyalandı: ${target}`);

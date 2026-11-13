@@ -5,6 +5,7 @@ import { BranchTile } from '@/components/branch-card';
 import { CustomerNumber } from '@/components/customer-number';
 import { InstallHint } from '@/components/install-hint';
 import { Card } from '@/components/ui';
+import { UpdateHint } from '@/components/update-hint';
 import { useApprovals, useHome } from '@/lib/queries';
 import type { BranchCard } from '@/lib/types';
 import { useMe } from '@/lib/use-me';
@@ -71,6 +72,7 @@ export default function HomeScreen() {
       ) : null}
 
       <InstallHint />
+      <UpdateHint />
 
       <CustomerNumber number={c?.customer_no} compact />
 

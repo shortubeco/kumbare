@@ -150,7 +150,7 @@ p { margin: 0; }
 .site-header .wrap {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
     min-height: 68px;
 }
 .brand {
@@ -178,17 +178,132 @@ p { margin: 0; }
 }
 .site-nav a:hover { background: var(--murekkep-2); }
 .site-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--kumbara); border-radius: 0; }
-.site-nav .nav-cta {
+.site-header .nav-cta {
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: var(--r-sm);
+    font-weight: 600;
+    white-space: nowrap;
     background: var(--kumbara);
     color: var(--murekkep);
-    margin-left: 8px;
 }
-.site-nav .nav-cta:hover { background: #ffc828; }
+.site-header .nav-cta:hover { background: #ffc828; }
+.site-header .nav-cta[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--murekkep); }
+
+/* Telefon menüsü: yalnızca çekmecede görünen parçalar masaüstünde gizli. */
+.menu-ust, .menu-musteri, .menu-ac, .menu-perde { display: none; }
 
 @media (max-width: 720px) {
-    .site-header .wrap { flex-wrap: wrap; gap: 0 12px; padding-block: 10px; }
-    .site-nav { margin-left: 0; width: 100%; overflow-x: auto; }
-    .site-nav .nav-cta { margin-left: auto; }
+    .site-header .nav-cta { margin-left: auto; }
+
+    /* JavaScript yoksa: üst satırda logo + "Müşteriler için", alt satırda üç bağlantı (kaydırma çubuğu yok). */
+    html:not(.js) .site-header .wrap { flex-wrap: wrap; gap: 6px 12px; padding-block: 10px; }
+    html:not(.js) .site-nav {
+        order: 3;
+        width: calc(100% + 16px);
+        margin: 0 -8px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
+    }
+    html:not(.js) .site-nav a { padding: 6px 8px; font-size: var(--t-sm); white-space: nowrap; }
+
+    /* JavaScript varsa: sağda menü düğmesi, menü soldan kayan çekmece. */
+    .js .site-header .wrap { min-height: 60px; gap: 8px; }
+    /* "Müşteriler için" telefonda yalnızca menü çekmecesinde. */
+    .js .site-header .wrap > .nav-cta { display: none; }
+    .js .menu-ac {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        margin-right: -8px;
+        border: 0;
+        border-radius: var(--r-sm);
+        background: transparent;
+        color: var(--kagit);
+        cursor: pointer;
+    }
+    .js .menu-ac:hover { background: var(--murekkep-2); }
+    .js .site-nav {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        width: min(84vw, 320px);
+        margin: 0;
+        padding: 12px 16px 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        overflow-y: auto;
+        background: var(--murekkep);
+        box-shadow: 8px 0 32px rgba(0, 0, 0, .35);
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform .25s ease, visibility 0s linear .25s;
+    }
+    .js .menu-acik .site-nav { transform: none; visibility: visible; transition: transform .25s ease; }
+    .js .menu-ust {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 44px;
+        margin-bottom: 8px;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.25rem;
+    }
+    .js .menu-kapat {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        margin-right: -10px;
+        border: 0;
+        border-radius: var(--r-sm);
+        background: transparent;
+        color: var(--kagit);
+        cursor: pointer;
+    }
+    .js .menu-kapat:hover { background: var(--murekkep-2); }
+    .js .site-nav > a { padding: 14px 12px; font-size: 1.125rem; border-radius: var(--r-sm); }
+    .js .site-nav > a[aria-current="page"] { box-shadow: inset 4px 0 0 var(--kumbara); border-radius: 0; }
+    .js .site-nav .menu-musteri {
+        display: block;
+        margin-top: 12px;
+        text-align: center;
+        background: var(--kumbara);
+        color: var(--murekkep);
+        border-radius: var(--r-sm);
+    }
+    .js .site-nav .menu-musteri:hover { background: #ffc828; }
+    .js .site-nav .menu-musteri[aria-current="page"] { box-shadow: none; border-radius: var(--r-sm); }
+    .js .menu-perde {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, .5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .25s ease, visibility 0s linear .25s;
+    }
+    .js .menu-acik .menu-perde { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+    body.menu-acik { overflow: hidden; }
+}
+@media (max-width: 370px) {
+    .site-header .brand { font-size: 1.3rem; gap: 8px; }
+    .site-header .brand svg { width: 30px; height: 30px; }
+    .site-header .nav-cta { padding: 7px 10px; font-size: var(--t-sm); }
+    html:not(.js) .site-nav a { padding: 6px 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .js .site-nav, .js .menu-perde { transition: none !important; }
 }
 
 /* ------------------------------------------------------------- düğmeler, formlar */
@@ -1116,3 +1231,39 @@ input:focus, select:focus, textarea:focus { border-color: var(--murekkep); outli
 .uyg-bilgisayar { margin-top: 24px; color: var(--gri); }
 @media (max-width: 800px) { .uyg-grid { grid-template-columns: 1fr; } }
 .store-badge:hover { border-color: var(--kumbara); }
+
+/* Müşteri / işletme ayrımı: hero'daki üyelik çağrısı ve bölüm etiketleri */
+.hero-uye {
+    margin-top: 16px;
+    max-width: 560px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    padding: 12px 16px;
+    border: 1px solid rgba(242, 183, 5, .55);
+    border-radius: var(--r-sm);
+    background: rgba(14, 59, 58, .55);
+    color: var(--kagit);
+    text-decoration: none;
+    font-size: var(--t-sm);
+}
+.hero-uye:hover { background: rgba(14, 59, 58, .8); border-color: var(--kumbara); }
+.hero-uye-etiket { color: var(--kumbara); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: var(--t-xs); }
+.hero-uye b { color: var(--kumbara); white-space: nowrap; }
+.hero-uye:focus-visible { outline: 3px solid var(--kumbara); outline-offset: 2px; }
+
+.bant-etiket {
+    display: inline-block;
+    justify-self: start;
+    margin: 0 0 6px;
+    padding: 2px 10px;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-size: var(--t-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--murekkep);
+}
+.bant-uygulama .bant-etiket { color: var(--kumbara); }

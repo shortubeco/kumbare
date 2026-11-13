@@ -1,0 +1,2 @@
+# Android uygulaması: APK telefonda doğru dosya türüyle insin. (Sürüm dosyası android.json uygulamadan ?t= ile önbelleksiz istenir.)
+AddType application/vnd.android.package-archive .apk
