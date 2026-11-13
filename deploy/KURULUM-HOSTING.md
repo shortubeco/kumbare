@@ -193,6 +193,10 @@ Bu paketlerde yalnızca değişen dosyalar, `kumbare-backend/...` klasör yapıs
 | guncelleme-13-islem-ekrani | Şube: İşlem ekranı | route + view |
 | guncelleme-14-sube-genel-bakis | Şube: Genel bakış | route + view |
 | guncelleme-15-musteriler-duzeltmeler | Şube: Müşteriler, Düzeltmeler | route + view |
+| guncelleme-25-mobil-menu | Site: telefonda ☰ ile soldan kayan menü (kaydırma çubuğu kalktı) | — |
+| guncelleme-24-musteri-yonlendirme | Site: "Müşteriler için" menü düğmesi, ana sayfada üyelik kutusu ve bant etiketleri | — |
+| guncelleme-23-android-1.0.1 | Android APK 1.0.1 (23 MB) + `android.json` | — |
+| guncelleme-22-android-apk | Android APK 1.0.0 + `/mobil-uygulama` indirme kartı + `/indir` klasörü; manifest dosya türü | — |
 | guncelleme-21-mobil-uygulama | iPhone/Android web uygulaması `/uygulama` (PWA) + site sayfası `/mobil-uygulama`; ana sayfa ve menüde bağlantılar | route + view |
 | guncelleme-20-menu-kategori-silme | Menü: ürünü silinmiş kategori artık silinebiliyor | — |
 | guncelleme-19-isletme-paneli | İşletme yöneticisi paneli (genel bakış, şubeler, yöneticiler, menü, raporlar, abonelikler, bilgiler) | route + view |
@@ -224,6 +228,22 @@ Havale dekontları sunucuda `kumbare-backend/storage/app/private/dekontlar/` alt
 
 Müşteri uygulamasının iPhone/web sürümü `kumbare-backend/public/uygulama` klasöründedir (derleme çıktısı, depoya girmez).
 
-1. Bilgisayarda `mobile` klasöründe `node scripts/build-web.mjs` çalıştırılır: canlı API adresiyle derler ve `backend/public/uygulama` klasörüne kopyalar (giriş dosyası `app.html`; klasördeki `.htaccess` yalnızca `DirectoryIndex app.html` içerir).
+1. Bilgisayarda `mobile` klasöründe `node scripts/build-web.mjs` çalıştırılır: canlı API adresiyle derler ve `backend/public/uygulama` klasörüne kopyalar (giriş dosyası `app.html`; klasördeki `.htaccess` `DirectoryIndex app.html` ve manifest dosya türünü içerir).
 2. `public/uygulama` klasörünün tamamı `kumbare-backend/public/uygulama` yoluyla ZIP'lenir; File Manager'da ev klasörüne Extract edilir. Eski karma adlı JS dosyaları sunucuda kalabilir, zararsızdır.
 3. Yalnızca uygulama değiştiyse cron gerekmez. `/uygulama/...` alt adreslerini `Web\AppController` karşılar (`app.html` döner).
+
+## Android uygulaması (APK) yeni sürüm yayımlama
+
+Android uygulaması siteden indirilir: `kumbare-backend/public/indir/kumbare.apk`. Aynı klasördeki `android.json` en son sürümü tanımlar; telefondaki uygulama açılışta bu dosyaya bakar ve kendi sürümünden yeniyse "Yeni sürüm var" kutusunu gösterir.
+
+1. `mobile/app.json` içinde `version` (ör. 1.0.2) ve `android.versionCode` (bir artır) güncellenir.
+2. Derleme Expo bulutunda (EAS) yapılır; bilgisayardaki PowerShell'de:
+   ```
+   cd C:\claude-lessons\kumbare.com\mobile
+   npx eas-cli@latest build -p android --profile apk
+   ```
+   Derleme kuyrukla birlikte 20–50 dakika sürebilir. Bitince ekranda APK bağlantısı çıkar.
+3. APK `kumbare.apk` adıyla `kumbare-backend/public/indir/` yoluna konur; `android.json` içinde `version_code`, `version_name` ve isteğe bağlı `notes` güncellenir. İkisi birlikte ZIP'lenip ev klasörüne Extract edilir. **Cron gerekmez.**
+4. Kontrol: `/mobil-uygulama` sayfasında yeni sürüm ve boyut görünmeli; eski sürümü kullanan telefonda uygulama tamamen kapatılıp açılınca "Yeni sürüm var" çıkmalı.
+
+**İmza anahtarı:** Bütün sürümler aynı anahtarla imzalanmalıdır; anahtar Expo hesabında (`hakanegne`) saklanır. Yedeği `npx eas-cli@latest credentials -p android` → `apk` profili → Keystore → "Download existing keystore" ile indirilip güvenli bir yerde tutulmalıdır. Anahtar kaybolursa telefonlara kurulu uygulama güncellenemez; kullanıcıların silip yeniden kurması gerekir.

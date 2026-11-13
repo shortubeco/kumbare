@@ -193,7 +193,7 @@ Uygulama push bildirim ve periyodik arka plan isteği kullanmaz. Sunucudan veri 
 
 ## 7. Uygulama durumu (13 Kasım 2026)
 
-Dağıtım kararı (bkz. iş planı + CLAUDE.md): mağaza yok. **iPhone:** web uygulaması (PWA) — `https://kumbare.trthabercanli.com/uygulama/ana-sayfa`, Safari'de "Ana Ekrana Ekle". **Android:** siteden indirilen imzalı APK (6. adım, henüz yapılmadı); o zamana kadar Chrome'dan ana ekrana ekleme. Kurulum anlatımı sitede `/mobil-uygulama`.
+Dağıtım kararı (bkz. iş planı + CLAUDE.md): mağaza yok. **iPhone:** web uygulaması (PWA) — `https://kumbare.trthabercanli.com/uygulama/ana-sayfa`, Safari'de "Ana Ekrana Ekle". **Android:** siteden indirilen imzalı APK (`/indir/kumbare.apk`, EAS bulut derlemesi; sürüm bilgisi `/indir/android.json`, uygulama açılışta bakıp yeni sürüm varsa ana sayfa ve profilde "Yeni sürüm var" kutusu gösterir). Kurulum anlatımı sitede `/mobil-uygulama` (sitede "Müşteriler için" menüsünden ulaşılır).
 
 | Adım | İçerik | Durum |
 |---|---|---|
@@ -202,7 +202,7 @@ Dağıtım kararı (bkz. iş planı + CLAUDE.md): mağaza yok. **iPhone:** web u
 | 3 | Ana sayfa blokları, Keşfet (arama, il/ilçe, mutfak, sıralama, kampanyalı, ödül veren), şube sayfası (Bilgiler / Menü / Değerlendirmeler, favori, kumbaram, kampanyalar), Kampanyalar, Favorilerim, değerlendirme yazma ve şikâyet | Yerelde denendi |
 | 4 | Profil menüsü, bilgileri düzenleme (doğum tarihi ve müşteri no değişmez), şifre değiştirme, Değerlendirmelerim, hesap silme, KVKK metni, sürüm | Yerelde denendi |
 | 5 | PWA: `/uygulama` altında yayın, manifest + iPhone meta, simgeler, "Ana ekrana ekle" ipucu, site sayfası `/mobil-uygulama` | Paket 21 hazır, canlı test bekliyor |
-| 6 | Android APK (EAS bulut derlemesi, `eas.json` → `apk` profili) + uygulama içi "yeni sürüm var" kontrolü (`/indir/android.json`) + sitede indirme bağlantısı (`/indir/kumbare.apk`) | Kod yazıldı, ilk APK derleniyor |
+| 6 | Android APK (EAS bulut derlemesi, `eas.json` → `apk` profili) + uygulama içi "yeni sürüm var" kontrolü (`/indir/android.json`) + sitede indirme bağlantısı (`/indir/kumbare.apk`) | Canlıda (13 Kasım 2026): 1.0.1, 23,3 MB (yalnızca ARM, R8, sıkıştırılmış yerel kütüphaneler — ilk derleme 95 MB'tı); Android telefonda denendi |
 
 Uygulamada **olmayanlar / sonraya kalanlar:** konumla "yakınımdakiler" (şimdilik kayıtlı ilçe kullanılıyor; telefondan konum izni gerekir), push bildirim (iş planı gereği yok), service worker / çevrimdışı çalışma.
 
